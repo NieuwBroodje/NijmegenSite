@@ -1,481 +1,303 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="nl">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Fantasy Roleplay | Nederlandse FiveM Roleplay Server</title>
-<meta name="description" content="Fantasy Roleplay is een Nederlandse FiveM roleplay server met een toegankelijke economie: wapens en geld gaan hand in hand met pure roleplay." />
-<link rel="icon" type="image/png" href="/assets/img/logo.png" />
-<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
-<meta name="theme-color" content="#0b2038" />
-<link rel="canonical" href="https://www.fantasy-roleplay.nl/" />
-<meta property="og:type" content="website" />
-<meta property="og:site_name" content="Fantasy Roleplay" />
-<meta property="og:locale" content="nl_NL" />
-<meta property="og:title" content="Fantasy Roleplay | Nederlandse FiveM Roleplay Server" />
-<meta property="og:description" content="Fantasy Roleplay is een Nederlandse FiveM roleplay server met een toegankelijke economie: wapens en geld gaan hand in hand met pure roleplay." />
-<meta property="og:url" content="https://www.fantasy-roleplay.nl/" />
-<meta property="og:image" content="https://www.fantasy-roleplay.nl/assets/img/logo.png" />
-<meta property="og:image:alt" content="Fantasy Roleplay – Nederlandse FiveM Roleplay Server" />
-<meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="Fantasy Roleplay | Nederlandse FiveM Roleplay Server" />
-<meta name="twitter:description" content="Fantasy Roleplay is een Nederlandse FiveM roleplay server met een toegankelijke economie: wapens en geld gaan hand in hand met pure roleplay." />
-<meta name="twitter:image" content="https://www.fantasy-roleplay.nl/assets/img/logo.png" />
-<link rel="apple-touch-icon" href="/assets/img/logo.png" />
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://www.fantasy-roleplay.nl/#organization","name":"Fantasy Roleplay","url":"https://www.fantasy-roleplay.nl/","logo":"https://www.fantasy-roleplay.nl/assets/img/logo.png","sameAs":["https://discord.gg/fantasyrp"]},{"@type":"WebSite","@id":"https://www.fantasy-roleplay.nl/#website","url":"https://www.fantasy-roleplay.nl/","name":"Fantasy Roleplay","inLanguage":"nl-NL","publisher":{"@id":"https://www.fantasy-roleplay.nl/#organization"}}]}</script>
-
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@900&family=Barlow+Condensed:wght@700;800&family=Bricolage+Grotesque:opsz,wght@12..96,400..800&display=swap" rel="stylesheet" />
-
-<link rel="preload" as="image" href="/assets/img/hero-poster.jpg" fetchpriority="high" />
-<script>try{if(localStorage.getItem("fr-theme")==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}</script>
-<link rel="stylesheet" href="/css/style.css" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jouw Server | Nederlandse FiveM Roleplay</title>
+<meta name="description" content="Nederlandse FiveM roleplay server met veilige betalingen via Tebex.">
+<meta name="theme-color" content="#151715">
+<link rel="icon" href="/logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#151715;--surface:#1c1e1c;--surface2:#242724;--line:#2d302d;--text:#f2f4f1;--muted:#a1a7a0;--blue:#5aaeff;--blue-ink:#06213a;--ok:#4ade80;--gold:#f5b82e;--nav:rgba(28,30,28,.82)}
+[data-theme=light]{--bg:#f4f5f2;--surface:#fff;--surface2:#ecede9;--line:#dcded8;--text:#171917;--muted:#5f655e;--blue-ink:#fff;--nav:rgba(255,255,255,.85)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:500 15px/1.55 'Plus Jakarta Sans',system-ui,sans-serif}
+h1,h2,h3{margin:0;letter-spacing:-.04em;line-height:1.05;font-weight:800}
+a{color:inherit}button{font-family:inherit}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+.promo{background:#0d0f0d;color:#fff;display:flex;gap:14px;justify-content:center;align-items:center;flex-wrap:wrap;padding:7px 12px;font-size:13px;border-bottom:1px solid #222}
+.promo .m{color:#a1a7a0}.promo .code{border:1px solid #3a3d3a;border-radius:6px;padding:3px 9px;font-weight:700;background:none;color:#fff;cursor:pointer}
+.promo a{font-weight:700;text-decoration:none;padding-left:14px;border-left:1px solid #333}
+nav.top{position:sticky;top:12px;z-index:20;max-width:860px;margin:12px auto 0;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;padding:8px 10px 8px 18px;border:1px solid var(--line);border-radius:99px;background:var(--nav);backdrop-filter:blur(14px)}
+nav.top .logo{width:30px;height:30px;color:var(--text);display:block}
+.links{display:flex;gap:4px}
+.pill{display:inline-flex;align-items:center;gap:8px;border-radius:99px;padding:8px 16px;text-decoration:none;color:var(--muted);font-weight:700;border:0;background:none;cursor:pointer;font-size:15px}
+.pill:hover{color:var(--text)}.pill.on{background:var(--surface2);color:var(--text)}
+.acts{display:flex;gap:4px;justify-content:flex-end;align-items:center}
+.ic{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;border:0;background:none;color:var(--text);cursor:pointer;position:relative}
+.ic svg,.btn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ic b{position:absolute;top:2px;right:0;background:var(--blue);color:var(--blue-ink);border-radius:99px;font-size:11px;padding:0 5px}
+.login{border:1px solid var(--line);background:var(--surface2);color:var(--text)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:1px solid transparent;border-radius:99px;padding:14px 26px;font-weight:700;font-size:15px;text-decoration:none;cursor:pointer}
+.btn.blue{background:var(--blue);color:var(--blue-ink)}.btn.white{background:#f2f4f1;color:#151715}.btn.dark{background:#1c1e1c;color:#fff;border-color:#333}
+.btn.line{background:var(--surface);border-color:var(--line);color:var(--text)}.btn:disabled{opacity:.5}
+.btn:hover{filter:brightness(1.08)}
+/* hero */
+.hero{position:relative;margin-top:-77px;min-height:calc(100vh - 38px);display:grid;place-items:center;text-align:center;padding:120px 20px 80px;background:linear-gradient(rgba(0,0,0,.55),rgba(21,23,21,1)),url(/hero.jpg) center/cover,linear-gradient(135deg,#2c3a2e,#151715)}
+.hero h1{font-size:clamp(46px,9vw,92px);color:#f2f4f1}
+.hero p{max-width:520px;margin:22px auto 30px;font-size:18px;font-weight:600;color:#d3d8d2}
+.hero .row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.online{display:inline-flex;align-items:center;gap:8px;margin-top:34px;background:rgba(10,12,10,.7);border-radius:99px;padding:8px 16px;font-size:13px;font-weight:700;color:#d3d8d2}
+.online i{width:8px;height:8px;border-radius:50%;background:var(--ok)}
+/* sections */
+section.s{padding:84px 0 20px}
+.sh{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:30px}
+.sh h2{font-size:clamp(32px,5vw,46px)}.sh p{color:var(--muted);max-width:480px;margin:12px 0 0;font-weight:600}
+.more{font-weight:700;text-decoration:none;display:inline-flex;gap:8px;align-items:center;border-bottom:1px solid var(--line);padding-bottom:4px}
+.more svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
+.grid.g3{grid-template-columns:repeat(auto-fill,minmax(270px,1fr))}
+.card{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column}
+.card .img{aspect-ratio:16/9.5;background:var(--surface2) center/cover}
+.card .bd{padding:22px 22px 0;flex:1}.card h3{font-size:19px;letter-spacing:-.02em}
+.card .ds{color:var(--muted);font-size:13.5px;margin:10px 0 18px;display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden}
+.card .ft{display:flex;justify-content:space-between;align-items:center;padding:16px 22px;border-top:1px solid var(--line)}
+.card .pr{font-size:21px;font-weight:800;letter-spacing:-.03em}.card small{display:block;color:var(--muted);font-weight:600;font-size:12px;letter-spacing:0}
+.card .ic{border:1px solid var(--line)}
+.badge{position:absolute;top:12px;left:16px;z-index:1;background:var(--blue);color:var(--blue-ink);font-size:12px;font-weight:700;padding:4px 14px;border-radius:99px}
+.coins{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;margin-top:22px;padding:22px 32px;border:1px solid var(--line);border-radius:18px;background:var(--surface)}
+.coins .l{display:flex;gap:18px;align-items:center}.coins h3{font-size:16px;letter-spacing:-.02em}.coins p{margin:2px 0 0;color:var(--muted);font-size:13px}
+.coin{width:46px;height:46px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffe083,var(--gold));box-shadow:10px 8px 0 -4px #d99a12;flex:none}
+.coins .r{display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+.step{display:flex;align-items:center;gap:20px}.step .ic{border:1px solid var(--line);width:44px;height:44px}
+.num{text-align:center;min-width:110px}.num b{display:block;font-size:34px;letter-spacing:-.04em;line-height:1}.num span,.tot span{font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
+.tot{text-align:center}.tot b{display:block;font-size:26px;letter-spacing:-.03em}
+.cmd{display:inline-flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:99px;padding:6px 6px 6px 18px;color:var(--muted);font-size:14px;background:var(--surface)}
+.cmd b{background:var(--blue);color:var(--blue-ink);border-radius:99px;padding:8px 16px}
+.gal{display:flex;gap:18px;height:600px}
+.vc{position:relative;flex:1;border-radius:22px;overflow:hidden;border:1px solid var(--line);background:#2b2e2b center/cover;cursor:pointer;transition:flex .45s;display:flex;flex-direction:column;justify-content:flex-end;padding:0;color:inherit;text-align:left}
+.vc.on{flex:3.2;cursor:default;background-color:var(--surface)}
+.vc .tag{position:absolute;left:16px;bottom:16px;background:rgba(21,23,21,.8);border-radius:14px;padding:14px 18px;font-weight:800;font-size:17px}
+.vc.on .tag{display:none}
+.vc .pn{display:none;background:var(--surface);padding:20px 22px;gap:18px}
+.vc.on .pn{display:flex}.vc .pn>div:first-child{flex:1}.vc .pn h3{font-size:19px;letter-spacing:-.02em}
+.vc .pn p{margin:4px 0 12px;color:var(--muted);font-size:13.5px}
+.vc .top{flex:1;background:center/cover;display:none}.vc.on .top{display:block}
+.it{display:flex;justify-content:space-between;gap:10px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:9px 12px;margin-top:6px;font-size:13px;font-weight:700;background:var(--bg)}
+.it em{font-style:normal;font-weight:600;color:var(--muted);margin-right:8px}
+.chip{background:var(--surface2);border-radius:6px;padding:3px 9px;font-size:12px}.chip.o{color:var(--gold);border:1px solid #6b5316;background:none}
+.prices{border-left:1px solid var(--line);padding-left:18px;min-width:130px;font-size:12px;color:var(--muted)}
+.prices b{display:flex;gap:8px;align-items:center;font-size:20px;color:var(--text);margin:2px 0 10px}.prices b.bl{color:var(--blue);font-size:26px}
+.prices .coin{width:20px;height:20px;box-shadow:4px 3px 0 -2px #d99a12}
+.cta{display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap;padding:46px 56px;border:1px solid var(--line);border-radius:26px;background:linear-gradient(120deg,var(--surface2),var(--surface))}
+.cta h2{font-size:clamp(26px,4vw,38px)}.cta p{color:var(--muted);margin:10px 0 0;font-weight:600}
+.cta .bt{display:flex;flex-direction:column;gap:10px;min-width:260px}
+/* store */
+.st-h{padding:56px 0 32px;border-bottom:1px solid var(--line)}.st-h h1{font-size:clamp(48px,8vw,80px)}.st-h p{color:var(--muted);font-size:17px;max-width:680px;margin:18px 0 0;font-weight:600}
+.st{display:grid;grid-template-columns:300px 1fr;gap:44px;padding:40px 0}
+.side{display:flex;flex-direction:column;gap:20px;align-self:start;position:sticky;top:90px}
+.box{border:1px solid var(--line);border-radius:18px;background:var(--surface);padding:24px}.box h4{margin:0 0 16px;font-size:15px}
+.cat{display:flex;align-items:center;gap:12px;width:100%;border:0;background:none;color:var(--muted);padding:13px 14px;border-radius:12px;font-weight:700;font-size:15px;cursor:pointer;margin-bottom:6px}
+.cat span{margin-left:auto;background:rgba(127,127,127,.2);border-radius:99px;padding:1px 10px;font-size:12px}
+.cat.on{background:var(--blue);color:var(--blue-ink)}.cat.on span{background:rgba(255,255,255,.35)}
+.mini{display:flex;justify-content:space-between;font-size:13px;color:var(--muted)}
+.mini+p{color:var(--muted);font-size:14px;margin:16px 0;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.sum{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;font-size:13px}.sum b{font-size:22px;letter-spacing:-.03em}
+.main h2{font-size:38px}.main>p{color:var(--muted);max-width:760px;margin:12px 0 24px;font-weight:600}
+code{background:var(--surface2);padding:2px 8px;border-radius:6px;font-weight:700;color:var(--text)}
+.bar{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:22px;font-size:13px;font-weight:700;color:var(--muted)}
+.bar input,.bar select{height:54px;border-radius:14px;border:1px solid var(--line);background:var(--surface);color:var(--text);padding:0 18px;font:600 14px inherit;font-family:inherit}
+.bar input{flex:1;min-width:200px}
+.empty{color:var(--muted)}.err{color:#ff8a8a}
+table{width:100%;border-collapse:collapse}td{padding:16px 8px;border-bottom:1px solid var(--line)}
+.qty{display:inline-flex;align-items:center;gap:10px}.qty .ic{border:1px solid var(--line);width:32px;height:32px}
+.prose{max-width:720px;padding-top:56px}.prose h1{font-size:56px}.prose h2{margin:30px 0 6px;font-size:22px}.prose p{color:var(--muted);margin:0}
+footer{border-top:1px solid var(--line);margin-top:90px;padding:60px 0 30px}
+.fc{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px}
+.fc h5{margin:4px 0 20px;font-size:14px}.fc ul{list-style:none;margin:0;padding:0;display:grid;gap:14px}.fc li a{color:var(--muted);text-decoration:none;font-weight:600}.fc li a:hover{color:var(--text)}
+.fb{display:flex;gap:10px;align-items:center;font-weight:800;font-size:16px}.fb img{width:30px;filter:invert(var(--inv,0))}
+.fc p{color:var(--muted);max-width:280px;margin:22px 0}
+.fbot{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-top:44px;padding-top:26px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;font-weight:600}
+.logo{mask:url(/logo.svg) center/contain no-repeat;-webkit-mask:url(/logo.svg) center/contain no-repeat;background:currentColor}
+@media(max-width:900px){.st{grid-template-columns:1fr}.side{position:static}.fc{grid-template-columns:1fr 1fr}.gal{flex-direction:column;height:auto}.vc{min-height:150px;flex:none}.vc.on{min-height:520px}.cta{padding:30px 22px}}
+@media(max-width:600px){nav.top{grid-template-columns:auto 1fr;border-radius:26px}.links{display:none}.pill.login span{display:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.vc{transition:none}}
+</style>
 </head>
 <body>
-
-<!-- ============ PROMOTIEBALK ============ -->
-<aside class="promo" aria-label="Aanbieding">
-  <div class="promo-inner">
-    <p class="promo-text"><strong>25% korting op alle Fantasycoins</strong><span class="promo-text-sub">Gebruik de code</span></p>
-    <button type="button" class="promo-code" id="promoCode" data-code="fantasy25" aria-label="Kopieer kortingscode fantasy25">
-      <span class="promo-code-text">FANTASY25</span>
-      <span class="promo-code-action" aria-hidden="true">
-        <svg class="promo-ico-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2.5"/><path d="M5 15V6.5A2.5 2.5 0 0 1 7.5 4H15"/></svg>
-        <svg class="promo-ico-done" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
-      </span>
-    </button>
-    <span class="promo-divider" aria-hidden="true"></span>
-    <a href="/winkel" class="promo-cta">Naar de store <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+<div class="promo"><strong id="pa"></strong><span class="m">Gebruik de code</span><button class="code" id="pc" title="Kopieer"></button><a href="#/store" id="pl">Naar de store →</a></div>
+<nav class="top" aria-label="Hoofdmenu">
+  <a href="#/" aria-label="Home"><span class="logo" style="display:block;width:30px;height:30px"></span></a>
+  <div class="links"><a class="pill" href="#/" data-r="home">Home</a><a class="pill" href="#/store" data-r="store">Store</a><a class="pill" href="#/regels" data-r="regels">Regels</a></div>
+  <div class="acts">
+    <button class="ic" id="theme" aria-label="Thema wisselen"><svg viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+    <a class="ic" href="#/winkelmand" aria-label="Winkelmand"><svg viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.2"/><circle cx="18" cy="20" r="1.2"/><path d="M2 3h3l2.6 12.4a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.5L21 8H6"/></svg><b id="count" hidden>0</b></a>
+    <a class="pill login" id="login" href="#"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>Inloggen</span></a>
   </div>
-  <span class="promo-toast" id="promoToast" role="status" aria-live="polite"></span>
-</aside>
+</nav>
+<main id="app" aria-live="polite"></main>
+<footer><div class="wrap"><div class="fc">
+  <div><div class="fb"><span class="logo" style="width:30px;height:30px"></span><span id="fbrand"></span></div><p>Een FiveM roleplay server waar jij het verhaal van de stad schrijft.</p><a class="btn blue" id="fconnect" style="padding:11px 20px">Connect nu</a></div>
+  <div><h5>Navigatie</h5><ul><li><a href="#/">Home</a></li><li><a href="#/store">Store</a></li><li><a href="#/regels">Regels</a></li></ul></div>
+  <div><h5>Regelgeving</h5><ul><li><a href="#/regels">Serverregels</a></li><li><a href="#/regels">APV</a></li><li><a href="#/regels">Wetboek van Strafrecht</a></li><li><a href="#/regels">Wetboek van Strafvordering</a></li></ul></div>
+  <div><h5>Discord</h5><ul id="fdiscords"></ul></div>
+</div><div class="fbot"><span>&copy; <span id="fyear"></span> <span id="fcopy"></span>. Alle rechten voorbehouden.</span><span>Betalingen verlopen veilig via Tebex.</span></div></div></footer>
 
-<!-- ============ NAVBAR ============ -->
-<header class="navbar">
-  <div class="container">
-    <a href="#top" class="brand" aria-label="Fantasy Roleplay">
-      <img src="/assets/img/logo.png" alt="Fantasy Roleplay" class="brand-mark" />
-    </a>
+<script>
+/* ====== Pas hier je server aan ====== */
+const CONFIG = {
+  name: 'Nijmegen Roleplay',
+  tagline: 'Nederlandse FiveM roleplay server',
+  intro: 'Geïnspireerd op echte roleplay, maar met een toegankelijke economie waarin wapens en geld hand in hand gaan met pure roleplay.',
+  promoText: '25% korting op alle coins', promoCode: 'WELKOM25',
+  currencyName: 'Coins',
+  storeIntro: 'Koop coins, een Supporter-pas of een staffrang. Na je betaling komt het automatisch in-game.',
+  discord: 'https://discord.gg/nijmegen',
+  discords: [['Hoofd-Discord','https://discord.gg/nijmegen'],['Support','#'],['Onderwereld','#'],['Overheid','#']],
+  connect: 'cfx.re/join/3yyz898',
+  loginUrl: '#',
+  coinPackageId: 0,          // Tebex package-ID van 100 coins ("Zelf een aantal kiezen")
+  coinStep: 100, coinPricePerStep: 5,
+  // Zet afbeeldingen in /public: hero.jpg (achtergrond), logo.svg (logo)
+  vehicles: [
+    { name:'Voorbeeld 1', img:'', desc:'Direct in je garage geleverd.', price:300, supporter:150, items:[{n:'Voertuig A',kg:40,hard:true}] },
+    { name:'Voorbeeld 2', img:'', desc:'Drie voertuigen in een pakket, direct in je garage geleverd.', price:400, supporter:200, items:[{n:'Voertuig B',kg:80,hard:false},{n:'Voertuig C',kg:40,hard:true},{n:'Voertuig D',kg:40,hard:true}] },
+    { name:'Voorbeeld 3', img:'', desc:'Twee voertuigen direct geleverd.', price:350, supporter:175, items:[{n:'Voertuig E',kg:20,hard:true},{n:'Voertuig F',kg:190,hard:false}] }
+  ],
+  rules: [
+    ['Respecteer iedereen','Wees beleefd tegenover spelers en staff, in-game en op Discord.'],
+    ['Blijf in je rol','Geen metagaming, powergaming of FailRP. Roleplay staat voorop.'],
+    ['Eerlijk spelen','Cheats, exploits en bug-misbruik leiden tot een permanente ban.'],
+    ['Straffen','Overtredingen worden beoordeeld door staff. Bezwaar maak je via een ticket op Discord.']
+  ]
+};
+/* ===================================== */
+const $ = s => document.querySelector(s), app = $('#app');
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const eur = n => new Intl.NumberFormat('nl-NL', {style:'currency', currency:'EUR'}).format(n);
+const cartIc = '<svg viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.2"/><circle cx="18" cy="20" r="1.2"/><path d="M2 3h3l2.6 12.4a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.5L21 8H6"/></svg>';
+const arrow = '<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+let catalog = null, cart = [];
+try { cart = JSON.parse(localStorage.getItem('cart') || '[]'); } catch {}
+const qtyTotal = () => cart.reduce((a,i)=>a+i.quantity,0);
+const save = () => { try { localStorage.setItem('cart', JSON.stringify(cart)); } catch {} const c=$('#count'); c.textContent = qtyTotal(); c.hidden = !qtyTotal(); };
 
-    <nav class="nav-pills" id="navLinks">
-      <a href="/" class="nav-link">Home</a>
-      <a href="/winkel" class="nav-link">Store</a>
-      <a href="/apv" class="nav-link">Regels</a>
-      <button type="button" class="nav-link nav-login-m" id="navLoginM">Inloggen</button>
-    </nav>
+try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch {}
+$('#theme').onclick = () => { const t = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light'; document.documentElement.dataset.theme = t; try { localStorage.setItem('theme', t); } catch {} };
+document.title = `${CONFIG.name} | ${CONFIG.tagline}`;
+$('#fbrand').textContent = CONFIG.name; $('#fcopy').textContent = CONFIG.name; $('#fyear').textContent = new Date().getFullYear();
+$('#pa').textContent = CONFIG.promoText; $('#pc').textContent = CONFIG.promoCode;
+$('#pc').onclick = () => { navigator.clipboard?.writeText(CONFIG.promoCode); $('#pc').textContent = 'Gekopieerd'; setTimeout(()=>$('#pc').textContent = CONFIG.promoCode, 1200); };
+$('#fconnect').href = CONFIG.connect; $('#login').href = CONFIG.loginUrl;
+$('#fdiscords').innerHTML = CONFIG.discords.map(([n,u]) => `<li><a href="${esc(u)}" target="_blank" rel="noopener">${esc(n)}</a></li>`).join('');
 
-    <div class="navbar-actions">
-      <button type="button" class="theme-toggle theme-toggle-m" data-theme-toggle aria-label="Lichte modus aanzetten" aria-pressed="false" title="Lichte modus"><svg class="tt-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="tt-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg></button>
-      <a href="/winkelmand" class="nav-cart nav-cart-m" data-cart-open aria-label="Winkelmand">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
-        <span class="nav-cart-badge" data-cart-badge hidden>0</span>
-      </a>
-      <button class="icon-btn nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
-      </button>
-    </div>
-    <div class="nav-account">
-      <button type="button" class="theme-toggle" data-theme-toggle aria-label="Lichte modus aanzetten" aria-pressed="false" title="Lichte modus"><svg class="tt-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="tt-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg></button>
-      <a href="/winkelmand" class="nav-cart" data-cart-open aria-label="Winkelmand">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
-        <span class="nav-cart-badge" data-cart-badge hidden>0</span>
-      </a>
-      <button type="button" class="nav-login" id="navLogin" aria-label="Inloggen met Cfx.re">
-        <span class="nl-avatar" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.5-7 8-7s8 3 8 7"/></svg></span>
-        <span class="nl-text">Inloggen</span>
-      </button>
-      <div class="nav-login-menu" id="navLoginMenu" hidden>
-        <button type="button" id="navLogout">Uitloggen</button>
-      </div>
-    </div>
-  </div>
-</header>
+async function load() {
+  if (catalog) return catalog;
+  const r = await fetch('/api/packages'); const d = await r.json();
+  if (!r.ok) throw new Error(d.error || 'Winkel kon niet laden');
+  return (catalog = d.categories);
+}
+const allPackages = () => (catalog || []).flatMap(c => c.packages);
+function pkgCard(p, badge) {
+  return `<article class="card">${badge ? '<span class="badge">Populair</span>' : ''}<div class="img" style="${p.image ? `background-image:url('${esc(p.image)}')` : ''}"></div>
+  <div class="bd"><h3>${esc(p.name)}</h3><p class="ds">${esc(p.description || '')}</p></div>
+  <div class="ft"><div class="pr">${eur(p.price)}<small>eenmalig, inclusief btw</small></div>
+  <button class="ic" data-add="${p.id}" aria-label="${esc(p.name)} in winkelmand">${cartIc}</button></div></article>`;
+}
+async function checkout(items, btn, errEl) {
+  const old = btn.innerHTML; btn.disabled = true; btn.textContent = 'Bezig…';
+  try {
+    const r = await fetch('/api/checkout', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ items }) });
+    const d = await r.json(); if (!r.ok) throw new Error(d.error); location.href = d.url;
+  } catch (e) { errEl.className = 'err'; errEl.textContent = 'Afrekenen mislukt: ' + e.message; btn.disabled = false; btn.innerHTML = old; }
+}
 
-  <div class="cart-backdrop" id="cartBackdrop"></div>
+const views = {
+  async home() {
+    const vs = CONFIG.vehicles;
+    app.innerHTML = `<section class="hero"><div><h1>${esc(CONFIG.name)}</h1><p>${esc(CONFIG.intro)}</p>
+      <div class="row"><a class="btn white" href="#/store">Bekijk de store ${arrow}</a><a class="btn dark" href="#/regels">Regels lezen</a></div>
+      <span class="online"><i></i><span id="online">-- spelers online</span></span></div></section>
+    <div class="wrap">
+    <section class="s"><div class="sh"><div><h2>Populair in de winkel</h2><p>Veilig afrekenen via Tebex. Je aankoop staat direct klaar op je account.</p></div><a class="more" href="#/store">Alle producten ${arrow}</a></div>
+      <div class="grid" id="pop"><p class="empty">Laden…</p></div>
+      <div class="coins"><div class="l"><span class="coin"></span><div><h3>Zelf een aantal kiezen</h3><p>Stel je pakket samen in stappen van ${CONFIG.coinStep} coins en reken direct af.</p></div></div>
+        <div class="r"><div class="step"><button class="ic" id="cm" aria-label="Minder">−</button><div class="num"><b id="cn"></b><span>${esc(CONFIG.currencyName)}</span></div><button class="ic" id="cp" aria-label="Meer">+</button></div>
+        <div class="tot"><span>Totaal</span><b id="ct"></b></div><button class="btn blue" id="cb">Afrekenen ${arrow}</button></div></div>
+      <p class="err" id="cerr"></p></section>
+    <section class="s"><div class="sh"><div><h2>Geef je coins uit</h2><p>Dit zijn een paar voorbeelden. In de store in-game vind je talloze pakketten, voertuigen en meer.</p></div><span class="cmd">Open de store met <b>/store</b></span></div>
+      <div class="gal" id="gal">${vs.map((v,i) => `<div class="vc ${i===Math.min(1,vs.length-1)?'on':''}" role="button" tabindex="0" style="${v.img?`background-image:url('${esc(v.img)}')`:''}">
+        <span class="tag">${esc(v.name)}</span><div class="top" style="${v.img?`background-image:url('${esc(v.img)}')`:''}"></div>
+        <div class="pn"><div><h3>${esc(v.name)}</h3><p>${esc(v.desc)}</p>${v.items.map(it => `<div class="it"><span>${esc(it.n)}</span><span><em>${it.kg} kg</em><span class="chip ${it.hard?'':'o'}">${it.hard?'Verhard':'Onverhard'}</span></span></div>`).join('')}</div>
+        <div class="prices">Officiële prijs<b><span class="coin"></span>${v.price}</b>Met Supporter<b class="bl"><span class="coin"></span>${v.supporter}</b></div></div></div>`).join('')}</div>
+      <p style="margin-top:22px"><a class="more" href="#/store">Naar de winkel ${arrow}</a></p></section>
+    <section class="s"><div class="cta"><div><h2>Ben jij klaar om te connecten?</h2><p>Join de Discord, lees de regels en stap de stad in.</p></div>
+      <div class="bt"><a class="btn blue" href="${esc(CONFIG.connect)}">Connect nu</a><a class="btn line" href="${esc(CONFIG.discord)}" target="_blank" rel="noopener">Word lid van de Discord</a></div></div></section></div>`;
+    $('#gal').addEventListener('click', e => { const c = e.target.closest('.vc'); if (c) { document.querySelectorAll('.vc').forEach(x => x.classList.toggle('on', x === c)); } });
+    $('#gal').addEventListener('keydown', e => { if (e.key === 'Enter') e.target.click(); });
+    fetch('/api/status').then(r=>r.json()).then(s=>{ if (s.online!=null && $('#online')) $('#online').innerHTML = `<b>${s.online}</b> spelers online`; }).catch(()=>{});
+    let n = CONFIG.coinStep * 5;
+    const draw = () => { $('#cn').textContent = n; $('#ct').textContent = eur(n / CONFIG.coinStep * CONFIG.coinPricePerStep); };
+    $('#cm').onclick = () => { n = Math.max(CONFIG.coinStep, n - CONFIG.coinStep); draw(); };
+    $('#cp').onclick = () => { n = Math.min(CONFIG.coinStep * 99, n + CONFIG.coinStep); draw(); }; draw();
+    $('#cb').onclick = e => {
+      if (!CONFIG.coinPackageId) { $('#cerr').textContent = 'Stel coinPackageId in CONFIG in.'; return; }
+      checkout([{ id: CONFIG.coinPackageId, quantity: n / CONFIG.coinStep }], e.currentTarget, $('#cerr'));
+    };
+    try { await load(); $('#pop').innerHTML = allPackages().slice(0,4).map((p,i) => pkgCard(p, i===1)).join('') || '<p class="empty">Nog geen producten.</p>'; }
+    catch (e) { $('#pop').innerHTML = `<p class="err">${esc(e.message)}</p>`; }
+  },
+  async store() {
+    app.innerHTML = `<div class="wrap"><div class="st-h"><h1>Store</h1><p>${esc(CONFIG.storeIntro)}</p></div>
+      <div class="st"><aside class="side"><div class="box"><h4>Categorieën</h4><div id="cats"></div></div>
+        <div class="box"><div class="mini"><b style="color:var(--text);font-size:15px">Winkelmand</b><span id="mc"></span></div><p id="mt"></p>
+        <div class="sum"><span>Totaal</span><b id="msum"></b></div><a class="btn blue" style="width:100%" href="#/winkelmand">Bekijk winkelmand</a></div></aside>
+      <div class="main" id="mainp"><p class="empty">Laden…</p></div></div></div>`;
+    try {
+      const cats = (await load()).filter(c => c.packages.length);
+      let cur = cats[0]?.id, q = '', sort = 'asc';
+      const mini = () => { const t = cart.reduce((a,i)=>a+(allPackages().find(p=>p.id===i.id)?.price||0)*i.quantity,0);
+        $('#mc').textContent = qtyTotal() ? qtyTotal() + ' items' : 'Leeg'; $('#mt').textContent = qtyTotal() ? 'Klaar om af te rekenen.' : 'Kies een pakket om te beginnen.'; $('#msum').textContent = eur(t); };
+      const list = () => {
+        const c = cats.find(c => c.id === cur); if (!c) { $('#mainp').innerHTML = '<p class="empty">Geen producten.</p>'; return; }
+        const ps = c.packages.filter(p => p.name.toLowerCase().includes(q)).sort((a,b) => sort==='asc' ? a.price-b.price : b.price-a.price);
+        $('#plist').innerHTML = ps.map(p => pkgCard(p)).join('') || '<p class="empty">Geen pakketten gevonden.</p>'; $('#pcount').textContent = ps.length + ' producten';
+      };
+      const drawCats = () => $('#cats').innerHTML = cats.map(c => `<button class="cat ${c.id===cur?'on':''}" data-cat="${c.id}">${esc(c.name)}<span>${c.packages.length}</span></button>`).join('');
+      const shell = () => { const c = cats.find(c => c.id === cur);
+        $('#mainp').innerHTML = `<h2>${esc(c?.name||'')}</h2><p>Gebruik in de stad het commando <code>/store</code> om de ingame store te openen. Na je aankoop komt het binnen enkele seconden automatisch op je account.</p>
+        <div class="bar"><input id="sq" type="search" placeholder="Zoek een pakket" aria-label="Zoek een pakket"><span id="pcount"></span><label>Sorteren <select id="ss"><option value="asc">Prijs: laag naar hoog</option><option value="desc">Prijs: hoog naar laag</option></select></label></div>
+        <div class="grid g3" id="plist"></div>`;
+        $('#sq').oninput = e => { q = e.target.value.toLowerCase(); list(); }; $('#ss').onchange = e => { sort = e.target.value; list(); }; list(); };
+      drawCats(); shell(); mini();
+      $('#cats').onclick = e => { const b = e.target.closest('[data-cat]'); if (b) { cur = +b.dataset.cat; q = ''; drawCats(); shell(); } };
+      app.onclick = () => setTimeout(mini, 0);
+    } catch (e) { $('#mainp').innerHTML = `<p class="err">${esc(e.message)}</p>`; }
+  },
+  async winkelmand() {
+    try { await load(); } catch {}
+    const rows = cart.map(i => ({ ...i, p: allPackages().find(p => p.id === i.id) })).filter(r => r.p);
+    if (!rows.length) { app.innerHTML = `<div class="wrap prose"><h1>Jouw winkelmand</h1><p class="empty">Je winkelmand is leeg.</p><p style="margin-top:20px"><a class="btn blue" href="#/store">Verder winkelen</a></p></div>`; return; }
+    const total = rows.reduce((a,r)=>a+r.p.price*r.quantity,0);
+    app.innerHTML = `<div class="wrap prose" style="max-width:860px"><h1>Jouw winkelmand</h1><table><tbody>${rows.map(r => `<tr><td><b>${esc(r.p.name)}</b></td>
+      <td><span class="qty"><button class="ic" data-dec="${r.id}" aria-label="Minder">−</button>${r.quantity}<button class="ic" data-add="${r.id}" aria-label="Meer">+</button></span></td>
+      <td><b>${eur(r.p.price*r.quantity)}</b></td><td><button class="btn line" style="padding:8px 16px" data-del="${r.id}">Verwijder</button></td></tr>`).join('')}</tbody></table>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:28px;gap:16px;flex-wrap:wrap"><span style="font-size:26px;font-weight:800;letter-spacing:-.03em;color:var(--text)">Totaal ${eur(total)}</span><button class="btn blue" id="pay">Afrekenen via Tebex ${arrow}</button></div>
+      <p id="payerr" style="margin-top:14px"></p><p>Je rondt de betaling veilig af via Tebex.</p></div>`;
+    $('#pay').onclick = e => checkout(cart, e.currentTarget, $('#payerr'));
+  },
+  regels() { app.innerHTML = `<div class="wrap prose"><h1>Regels</h1>${CONFIG.rules.map(([t,d]) => `<h2>${esc(t)}</h2><p>${esc(d)}</p>`).join('')}</div>`; },
+  bedankt() { cart = []; save(); app.innerHTML = `<div class="wrap prose"><h1>Bedankt voor je aankoop</h1><p>Je aankoop wordt binnen enkele seconden in-game geleverd.</p><p style="margin-top:20px"><a class="btn blue" href="#/">Terug naar home</a></p></div>`; }
+};
+views.winkel = views.store;
 
-  <aside class="cart-dropdown" id="cartDropdown">
-    <div class="cart-panel-head">
-      <div>
-        <span class="eyebrow">Fantasy Roleplay / Winkel</span>
-        <h2>Jouw winkelmand</h2>
-      </div>
-      <button type="button" class="cart-close" id="cartClose" aria-label="Sluiten">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-      </button>
-    </div>
-
-    <div class="cart-body">
-      <div class="cart-empty" id="cartEmpty">
-        <span class="cart-empty-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M7.5 6v.75H5.513c-.96 0-1.764.724-1.865 1.679l-1.263 12A1.875 1.875 0 0 0 4.25 22.5h15.5a1.875 1.875 0 0 0 1.865-2.071l-1.263-12a1.875 1.875 0 0 0-1.865-1.679H16.5V6a4.5 4.5 0 1 0-9 0ZM12 3a3 3 0 0 0-3 3v.75h6V6a3 3 0 0 0-3-3Zm-3 8.25a3 3 0 1 0 6 0v-.75a.75.75 0 0 1 1.5 0v.75a4.5 4.5 0 1 1-9 0v-.75a.75.75 0 0 1 1.5 0v.75Z" clip-rule="evenodd"/></svg></span>
-        <p>Je winkelmand is leeg.</p>
-        <a href="/winkel" class="btn btn-primary">Verder winkelen</a>
-      </div>
-
-      <ul class="cart-items" id="cartItems"></ul>
-    </div>
-
-    <div class="cart-summary" id="cartSummary" hidden>
-      <div class="cart-summary-row cart-summary-total">
-        <span>Totaal</span>
-        <strong id="cartTotalPrice">&euro; 0,00</strong>
-      </div>
-      <a href="https://fantasyrp.tebex.io/" target="_blank" rel="noopener" class="btn btn-primary cart-checkout" id="cartCheckout">
-        Afrekenen
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
-      </a>
-      <p class="cart-note">Je rondt de betaling veilig af via Tebex.</p>
-    </div>
-  </aside>
-
-<!-- ============ HERO ============ -->
-<main id="top">
-  <section class="hero">
-    <video class="hero-video" id="heroVideo" autoplay muted loop playsinline preload="metadata" poster="/assets/img/hero-poster.jpg" aria-hidden="true">
-      <source src="/assets/img/hero-web.mp4" type="video/mp4" />
-    </video>
-    <div class="hero-inner">
-      <h1 class="hero-title"><span>Fantasy</span> <span>Roleplay</span><span class="visually-hidden"> – Nederlandse FiveM roleplay server</span></h1>
-
-      <p class="hero-subtitle">Geïnspireerd op Reallife Roleplay, maar met een toegankelijkere economie waarin wapens en geld hand in hand gaan met pure roleplay.</p>
-
-      <div class="hero-actions">
-        <a href="/winkel" class="btn btn-primary">
-          Bekijk de store
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
-        <a href="/apv" class="btn btn-secondary">
-          Regels lezen
-        </a>
-      </div>
-
-      <p class="hero-live" id="playerStat" role="status" aria-live="polite">
-        <span class="stat-dot"></span>
-        <span><span class="hero-live-num" id="playerCount">--</span> <span id="playerLabel">spelers online</span></span>
-      </p>
-    </div>
-  </section>
-
-              <!-- ============ COINS SECTION ============ -->
-  <section class="fp" id="coins">
-    <div class="fp-inner">
-      <header class="fp-head">
-        <div>
-          <h2 class="section-title">Populair in de winkel</h2>
-          <p class="fp-lead">Veilig afrekenen via Tebex. Je aankoop staat direct klaar op je account.</p>
-        </div>
-        <a href="/winkel" class="fp-all">Alle producten
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
-      </header>
-
-      <div class="fp-grid">
-        <article class="fp-card">
-          <div class="fp-media">
-            <img src="/assets/img/aanbod/staff/juniormod.jpg" alt="Junior Moderator" width="1200" height="665" loading="lazy" decoding="async" />
-          </div>
-          <div class="fp-body">
-            <h3 class="fp-title">Junior Moderator</h3>
-            <p class="fp-desc">Je krijgt meer in-game permissies en kunt vanaf deze rang ook spelers bannen.</p>
-          </div>
-          <div class="fp-foot">
-            <span class="fp-price">&euro;10</span>
-            <button type="button" class="fp-add" data-add="staff-juniormod" aria-label="Junior Moderator toevoegen aan je winkelmand">
-              <svg class="fp-ico-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
-              <svg class="fp-ico-done" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg>
-            </button>
-          </div>
-        </article>
-
-        <article class="fp-card fp-card--featured">
-          <span class="fp-badge fp-badge--accent">Populair</span>
-          <div class="fp-media">
-            <img src="/assets/img/supportergoud.png" alt="Supporter Goud" width="1678" height="937" loading="lazy" decoding="async" />
-          </div>
-          <div class="fp-body">
-            <h3 class="fp-title">Supporter Goud</h3>
-            <p class="fp-desc">€2.500.000 en 300 Fantasycoins direct erbij, 50% korting in de in-game store en de hoogste wachtrij-prioriteit. 30 dagen geldig, daarna opnieuw te koop.</p>
-          </div>
-          <div class="fp-foot">
-            <span class="fp-price">&euro;15</span>
-            <button type="button" class="fp-add" data-add="supporter-goud" aria-label="Supporter Goud toevoegen aan je winkelmand">
-              <svg class="fp-ico-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
-              <svg class="fp-ico-done" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg>
-            </button>
-          </div>
-        </article>
-
-        <article class="fp-card">
-          <div class="fp-media">
-            <img src="/assets/img/aanbod/coins/300.jpg" alt="300 Fantasycoins" width="1200" height="665" loading="lazy" decoding="async" />
-          </div>
-          <div class="fp-body">
-            <h3 class="fp-title">300 Fantasycoins</h3>
-            <p class="fp-desc">Een mooi pakket coins voor voertuigen, kentekens en meer via de in-game store.</p>
-          </div>
-          <div class="fp-foot">
-            <span class="fp-price">&euro;15</span>
-            <button type="button" class="fp-add" data-add="coins-300" aria-label="300 Fantasycoins toevoegen aan je winkelmand">
-              <svg class="fp-ico-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
-              <svg class="fp-ico-done" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg>
-            </button>
-          </div>
-        </article>
-
-        <article class="fp-card">
-          <div class="fp-media">
-            <img src="/assets/img/aanbod/coins/600.jpg" alt="600 Fantasycoins" width="1200" height="665" loading="lazy" decoding="async" />
-          </div>
-          <div class="fp-body">
-            <h3 class="fp-title">600 Fantasycoins</h3>
-            <p class="fp-desc">Een groot pakket coins voor voertuigen, kentekens en pakketten via de in-game store.</p>
-          </div>
-          <div class="fp-foot">
-            <span class="fp-price">&euro;30</span>
-            <button type="button" class="fp-add" data-add="coins-600" aria-label="600 Fantasycoins toevoegen aan je winkelmand">
-              <svg class="fp-ico-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
-              <svg class="fp-ico-done" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg>
-            </button>
-          </div>
-        </article>
-      </div>
-
-      <div class="fp-custom" id="coinBar">
-        <div class="fp-custom-info">
-          <img class="fp-custom-coin" src="/assets/img/coins.png" alt="" width="56" height="56" loading="lazy" decoding="async" />
-          <div>
-            <strong>Zelf een aantal kiezen</strong>
-            <span>Stel je pakket samen in stappen van 100 coins en reken direct af.</span>
-          </div>
-        </div>
-
-        <div class="fp-stepper" role="group" aria-label="Aantal Fantasycoins">
-          <button type="button" class="fp-step" id="coinMinus" aria-label="100 coins minder">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/></svg>
-          </button>
-          <div class="fp-stepper-val" role="status" aria-live="polite">
-            <input class="fp-stepper-num" id="coinAmount" type="text" inputmode="numeric" autocomplete="off" maxlength="5" value="500" aria-label="Aantal Fantasycoins, typ een aantal of gebruik de knoppen" />
-            <span class="fp-stepper-unit">Fantasycoins</span>
-          </div>
-          <button type="button" class="fp-step" id="coinPlus" aria-label="100 coins meer">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
-          </button>
-        </div>
-
-        <div class="fp-custom-buy">
-          <div class="fp-custom-total">
-            <span>Totaal</span>
-            <strong>&euro;<span id="coinPrice">25</span></strong>
-          </div>
-          <button type="button" class="btn btn-primary fp-checkout" id="coinBuyBtn">
-            Afrekenen
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-          <!-- ============ SPEND SECTION ============ -->
-  <section class="spend" id="uitgeven">
-    <div class="spend-inner">
-      <header class="spend-head">
-        <div>
-          <h2 class="section-title">Geef je coins uit</h2>
-          <p class="spend-lead">Dit zijn een paar voorbeelden. In de store in-game vind je talloze pakketten, voertuigen en meer.</p>
-        </div>
-        <div class="spend-cmd">
-          <span class="spend-cmd-label">Open de store met</span>
-          <code class="spend-cmd-code">/store</code>
-        </div>
-      </header>
-
-      <ul class="spend-panels" id="spendPanels">
-          <li class="spend-panel has-info is-active" tabindex="0" aria-label="Sr6, voertuigenpakket">
-            <div class="spend-media">
-              <img src="/assets/img/sr6.png" alt="" width="1678" height="937" loading="lazy" decoding="async" style="object-position: 35% 50%" />
-              <div class="spend-cap">
-                <strong>Sr6</strong>
-                <span>Voertuigenpakket</span>
-              </div>
-            </div>
-            <div class="spend-info">
-              <div class="spend-info-main">
-                <h3>Sr6</h3>
-                <p>De Sr6, direct in je garage geleverd.</p>
-                <ul class="spend-cars">
-                  <li><span class="spend-car-name">Obey sr6</span><span class="spend-car-kg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M9 8V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/></svg>40 kg</span><span class="spend-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h12l-3-3M21 17H9l3 3"/><path d="M3 12h18"/></svg>Verhard</span></li>
-                </ul>
-              </div>
-              <dl class="spend-price">
-                <div class="spend-price-row">
-                  <dt>Officiële prijs</dt>
-                  <dd class="is-old"><img src="/assets/img/coins.png" alt="" width="18" height="18" />300</dd>
-                </div>
-                <div class="spend-price-row is-deal">
-                  <dt>Met Supporter</dt>
-                  <dd><img src="/assets/img/coins.png" alt="" width="26" height="26" />150</dd>
-                </div>
-              </dl>
-            </div>
-          </li>
-          <li class="spend-panel has-info" tabindex="0" aria-label="Nouri, voertuigenpakket">
-            <div class="spend-media">
-              <img src="/assets/img/nouri.png" alt="" width="1678" height="944" loading="lazy" decoding="async" style="object-position: 30% 50%" />
-              <div class="spend-cap">
-                <strong>Nouri</strong>
-                <span>Voertuigenpakket</span>
-              </div>
-            </div>
-            <div class="spend-info">
-              <div class="spend-info-main">
-                <h3>Nouri</h3>
-                <p>Drie voertuigen in een pakket, direct in je garage geleverd.</p>
-                <ul class="spend-cars">
-                  <li><span class="spend-car-name">Pegassi Velocita</span><span class="spend-car-kg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M9 8V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/></svg>80 kg</span><span class="spend-tag is-off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 15l4-7h6l3 4h5v3"/><circle cx="7" cy="17" r="2.5"/><circle cx="17" cy="17" r="2.5"/></svg>Onverhard</span></li>
-                  <li><span class="spend-car-name">BF Wolf R</span><span class="spend-car-kg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M9 8V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/></svg>40 kg</span><span class="spend-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h12l-3-3M21 17H9l3 3"/><path d="M3 12h18"/></svg>Verhard</span></li>
-                  <li><span class="spend-car-name">Ubermacht Sentinel GT</span><span class="spend-car-kg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M9 8V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/></svg>40 kg</span><span class="spend-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h12l-3-3M21 17H9l3 3"/><path d="M3 12h18"/></svg>Verhard</span></li>
-                </ul>
-              </div>
-              <dl class="spend-price">
-                <div class="spend-price-row">
-                  <dt>Officiële prijs</dt>
-                  <dd class="is-old"><img src="/assets/img/coins.png" alt="" width="18" height="18" />400</dd>
-                </div>
-                <div class="spend-price-row is-deal">
-                  <dt>Met Supporter</dt>
-                  <dd><img src="/assets/img/coins.png" alt="" width="26" height="26" />200</dd>
-                </div>
-              </dl>
-            </div>
-          </li>
-          <li class="spend-panel has-info" tabindex="0" aria-label="Comet 6×6, voertuigenpakket">
-            <div class="spend-media">
-              <img src="/assets/img/comet.png" alt="" width="1686" height="933" loading="lazy" decoding="async" style="object-position: 35% 50%" />
-              <div class="spend-cap">
-                <strong>Comet 6×6</strong>
-                <span>Voertuigenpakket</span>
-              </div>
-            </div>
-            <div class="spend-info">
-              <div class="spend-info-main">
-                <h3>Comet 6×6</h3>
-                <p>De Comet &amp; Dubsta 6×6 direct in je garage geleverd.</p>
-                <ul class="spend-cars">
-                  <li><span class="spend-car-name">Pfister Comet S2R</span><span class="spend-car-kg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M9 8V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/></svg>20 kg</span><span class="spend-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h12l-3-3M21 17H9l3 3"/><path d="M3 12h18"/></svg>Verhard</span></li>
-                  <li><span class="spend-car-name">Benefactor pace dubsta</span><span class="spend-car-kg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M9 8V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/></svg>190 kg</span><span class="spend-tag is-off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 15l4-7h6l3 4h5v3"/><circle cx="7" cy="17" r="2.5"/><circle cx="17" cy="17" r="2.5"/></svg>Onverhard</span></li>
-                </ul>
-              </div>
-              <dl class="spend-price">
-                <div class="spend-price-row">
-                  <dt>Officiële prijs</dt>
-                  <dd class="is-old"><img src="/assets/img/coins.png" alt="" width="18" height="18" />350</dd>
-                </div>
-                <div class="spend-price-row is-deal">
-                  <dt>Met Supporter</dt>
-                  <dd><img src="/assets/img/coins.png" alt="" width="26" height="26" />175</dd>
-                </div>
-              </dl>
-            </div>
-          </li>
-      </ul>
-
-      <a href="/winkel" class="fp-all spend-all">Naar de winkel
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </a>
-    </div>
-  </section>
-
-  <!-- ============ CTA SECTION ============ -->
-  <section class="cta" id="join">
-    <div class="cta-inner">
-      <div class="cta-box">
-        <div class="cta-art" aria-hidden="true">
-          <img src="/assets/img/cta.png" alt="" loading="lazy" />
-        </div>
-
-        <div class="cta-copy">
-          <h2 class="section-title">Ben jij klaar om te connecten?</h2>
-          <p>Join de Discord, lees de regels en stap de stad in.</p>
-        </div>
-
-        <div class="cta-actions">
-          <a href="https://cfx.re/join/988734b" target="_blank" rel="noopener" class="btn btn-primary">
-            Connect nu
-            <span class="btn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg></span>
-          </a>
-          <a href="https://discord.gg/fantasyrp" target="_blank" rel="noopener" class="btn btn-secondary">
-            Word lid van de Discord
-            <span class="btn-ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.74 19.74 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .079.009c.12.099.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg></span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-</main>
-
-<!-- ============ FOOTER ============ -->
-<footer class="footer">
-  <div class="ft-inner">
-    <div class="ft-top">
-      <div class="ft-brand">
-        <a href="/" class="ft-logo" aria-label="Fantasy Roleplay">
-          <img src="/assets/img/logo.png" alt="" />
-          <span>Fantasy Roleplay</span>
-        </a>
-        <p>Een FiveM roleplay server waar jij het verhaal van de stad schrijft.</p>
-        <div class="ft-actions">
-          <a href="https://cfx.re/join/988734b" target="_blank" rel="noopener" class="ft-btn ft-btn-primary">Connect nu</a>
-          <a href="https://discord.gg/fantasyrp" target="_blank" rel="noopener" class="ft-btn" aria-label="Discord">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.74 19.74 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .079.009c.12.099.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
-          </a>
-        </div>
-      </div>
-
-      <nav class="ft-col" aria-label="Navigatie">
-        <h4>Navigatie</h4>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/winkel">Store</a></li>
-          <li><a href="/apv">Regels</a></li>
-        </ul>
-      </nav>
-
-      <nav class="ft-col" aria-label="Regelgeving">
-        <h4>Regelgeving</h4>
-        <ul>
-          <li><a href="/apv">Serverregels</a></li>
-          <li><a href="/apv">APV</a></li>
-          <li><a href="/strafrecht">Wetboek van Strafrecht</a></li>
-          <li><a href="/strafvordering">Wetboek van Strafvordering</a></li>
-        </ul>
-      </nav>
-
-      <nav class="ft-col" aria-label="Discord">
-        <h4>Discord</h4>
-        <ul>
-          <li><a href="https://discord.gg/fantasyrp" target="_blank" rel="noopener">Fantasy Roleplay</a></li>
-          <li><a href="https://discord.gg/654X3qy9R5" target="_blank" rel="noopener">Support</a></li>
-          <li><a href="https://discord.gg/EmuJf6c8Yg" target="_blank" rel="noopener">Onderwereld</a></li>
-          <li><a href="https://discord.gg/B83bdHdt6a" target="_blank" rel="noopener">Overheid</a></li>
-        </ul>
-      </nav>
-    </div>
-
-    <div class="ft-bottom">
-      <p>&copy; <span id="year"></span> Fantasy Roleplay. Alle rechten voorbehouden.</p>
-      <p>Betalingen verlopen veilig via Tebex.</p>
-      <a href="#" class="ft-up" aria-label="Terug naar boven">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 15 6-6 6 6"/></svg>
-      </a>
-    </div>
-  </div>
-
-</footer>
-
-<script src="/js/main.js"></script>
-<script src="/js/account.js"></script>
-<script src="/js/minicart.js"></script>
-
+function route() {
+  const r = location.hash.replace(/^#\/?/, '') || 'home', name = views[r] ? r : 'home';
+  document.querySelectorAll('.links .pill').forEach(a => a.classList.toggle('on', a.dataset.r === (name==='winkel'?'store':name)));
+  window.scrollTo(0, 0); views[name]();
+}
+document.addEventListener('click', e => {
+  const t = e.target.closest('[data-add],[data-dec],[data-del]'); if (!t) return;
+  const id = +(t.dataset.add || t.dataset.dec || t.dataset.del), item = cart.find(i => i.id === id);
+  if (t.dataset.add) item ? item.quantity++ : cart.push({ id, quantity: 1 });
+  if (t.dataset.dec && item) { item.quantity--; if (item.quantity < 1) cart = cart.filter(i => i.id !== id); }
+  if (t.dataset.del) cart = cart.filter(i => i.id !== id);
+  save(); if (location.hash === '#/winkelmand') views.winkelmand();
+});
+addEventListener('hashchange', route); save(); route();
+</script>
 </body>
 </html>
