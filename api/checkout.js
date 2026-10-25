@@ -1,4 +1,4 @@
-// POST /api/checkout { items: [{ id, quantity }] } -> { url } (Tebex checkout)
+// POST /api/checkout { items: [{ id, quantity }] } -> { url } (Tebex checkout)-
 const BASE = 'https://headless.tebex.io/api';
 
 module.exports = async (req, res) => {
