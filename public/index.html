@@ -240,6 +240,9 @@ let lastQty = 0;
 const save = () => { try { localStorage.setItem('cart', JSON.stringify(cart)); } catch {} const c=$('#count'), q=qtyTotal(); c.textContent = q; c.hidden = !q;
   if (q > lastQty) { c.classList.remove('pop'); void c.offsetWidth; c.classList.add('pop'); } lastQty = q; };
 
+/* ===== Veilig JSON lezen (Vercel geeft bij crashes platte tekst terug) ===== */
+const readJson = async r => { const t = await r.text(); try { return JSON.parse(t); } catch { return { error: 'Serverfout (' + r.status + '). Controleer de Vercel-logs van /api.' }; } };
+
 /* ===== Toast ===== */
 let tt;
 function toast(msg, bad) { const t = $('#toast'); t.textContent = msg; t.className = 'toast show' + (bad ? ' bad' : ''); clearTimeout(tt); tt = setTimeout(() => t.className = 'toast', 2600); }
@@ -262,7 +265,7 @@ async function startLogin() {
   const b = $('#login'); b.disabled = true; $('#loginTxt').textContent = 'Bezig…';
   try {
     const r = await fetch('/api/login', { method: 'POST' });
-    const d = await r.json();
+    const d = await readJson(r);
     if (!r.ok || !d.authUrl) throw new Error(d.error || 'Geen login-URL ontvangen');
     try { sessionStorage.setItem('pendingBasket', d.basketIdent); } catch {}
     $('#loginTxt').textContent = 'Doorsturen…';
@@ -330,7 +333,7 @@ async function checkout(items, btn, errEl) {
       try {
         const ar = await fetch('/api/add-packages', { method: 'POST', headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ basketIdent: sess.ident, items: items.map(i => ({ package_id: i.id, quantity: i.quantity })) }) });
-        const ad = await ar.json().catch(() => ({}));
+        const ad = await readJson(ar);
         if (ar.ok && ad.url) { btn.innerHTML = '✓ Doorsturen naar kassa…'; setTimeout(() => { location.href = ad.url; }, 400); return; }
       } catch {}
       // Basket verlopen of afgerond: opnieuw inloggen via CFX (login-ident vergeten, naam blijft staan)
@@ -341,7 +344,7 @@ async function checkout(items, btn, errEl) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ items })
     });
-    const d = await r.json();
+    const d = await readJson(r);
     if (!r.ok) throw new Error(d.error || 'Onbekende fout');
     if (d.authUrl) {
       try { sessionStorage.setItem('pendingBasket', d.basketIdent); } catch {}
