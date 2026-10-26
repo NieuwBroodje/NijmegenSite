@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inloggen gelukt — verwerken…</title>
+<meta name="theme-color" content="#151715">
+<style>
+:root{--bg:#151715;--text:#f2f4f1;--blue:#5aaeff;--ok:#4ade80;--err:#ff8a8a}
+body{margin:0;background:var(--bg);color:var(--text);font:600 15px/1.5 system-ui,sans-serif;display:grid;place-items:center;min-height:100vh;text-align:center;padding:20px}
+.box{max-width:480px}
+h1{font-size:28px;margin:0 0 12px;font-weight:800;letter-spacing:-.04em}
+p{margin:0 0 6px;color:#a1a7a0}
+.spin{width:40px;height:40px;border:3px solid rgba(255,255,255,.1);border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 24px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ok{color:var(--ok);font-size:40px;margin-bottom:16px}
+.err{color:var(--err);margin-top:8px;font-size:13px}
+a{color:var(--blue);font-weight:700}
+</style>
+</head>
+<body>
+<div class="box">
+  <div id="spin" class="spin"></div>
+  <h1 id="title">Even geduld…</h1>
+  <p id="msg">Je aankoop wordt verwerkt. Dit duurt even.</p>
+  <p id="err" class="err"></p>
+</div>
+
+<script>
+(async () => {
+  const params = new URLSearchParams(location.search);
+  const itemsRaw = params.get('items');
+  // Tebex stuurt soms basketIdent terug als query param
+  const basketIdent = params.get('basketIdent') || params.get('basket_ident') || params.get('basket');
+
+  if (!itemsRaw) {
+    // Geen items, stuur terug naar store
+    document.getElementById('title').textContent = 'Inloggen gelukt!';
+    document.getElementById('msg').textContent = 'Je wordt teruggestuurd naar de store…';
+    document.getElementById('spin').className = 'ok';
+    document.getElementById('spin').textContent = '✓';
+    setTimeout(() => location.href = '/#/store', 1500);
+    return;
+  }
+
+  let items;
+  try {
+    items = JSON.parse(decodeURIComponent(itemsRaw));
+  } catch {
+    showError('Ongeldige items in URL.');
+    return;
+  }
+
+  if (!basketIdent) {
+    // Geen basket ident in URL — misschien staat het in de Tebex return URL anders
+    // Probeer items terug te sturen naar store met een herstart
+    document.getElementById('title').textContent = 'Bijna klaar…';
+    document.getElementById('msg').innerHTML = 'Kon je sessie niet ophalen. <a href="/#/winkelmand">Ga terug naar je winkelmand</a> en probeer opnieuw.';
+    document.getElementById('spin').style.display = 'none';
+    return;
+  }
+
+  try {
+    const r = await fetch('/api/add-packages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ basketIdent, items })
+    });
+    const d = await r.json();
+    if (!r.ok) throw new Error(d.error || 'Onbekende fout');
+
+    // Stuur naar Tebex checkout
+    document.getElementById('spin').className = 'ok';
+    document.getElementById('spin').textContent = '✓';
+    document.getElementById('title').textContent = 'Gelukt!';
+    document.getElementById('msg').textContent = 'Je wordt doorgestuurd naar de kassa…';
+    setTimeout(() => { location.href = d.url; }, 800);
+  } catch (e) {
+    showError(e.message);
+  }
+})();
+
+function showError(msg) {
+  document.getElementById('spin').style.display = 'none';
+  document.getElementById('title').textContent = 'Er ging iets mis';
+  document.getElementById('msg').innerHTML = '<a href="/#/winkelmand">Terug naar winkelmand</a>';
+  document.getElementById('err').textContent = msg;
+}
+</script>
+</body>
+</html>
