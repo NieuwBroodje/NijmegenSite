@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Nijmegen Roleplay | Created By Portak-NL </title>
+<title>Nijmegen Roleplay | Created By Portak-NL</title>
 <meta name="description" content="Nederlandse FiveM roleplay server met veilige betalingen via Tebex.">
 <meta name="theme-color" content="#151715">
 <link rel="icon" href="/logo.png">
@@ -21,7 +21,10 @@ a{color:inherit}button{font-family:inherit}
 .promo{background:#0d0f0d;color:#fff;display:flex;gap:14px;justify-content:center;align-items:center;flex-wrap:wrap;padding:7px 12px;font-size:13px;border-bottom:1px solid #222}
 .promo .m{color:#a1a7a0}.promo .code{border:1px solid #3a3d3a;border-radius:6px;padding:3px 9px;font-weight:700;background:none;color:#fff;cursor:pointer}
 .promo a{font-weight:700;text-decoration:none;padding-left:14px;border-left:1px solid #333}
-nav.top{position:sticky;top:12px;z-index:20;max-width:860px;margin:12px auto 0;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;padding:8px 10px 8px 18px;border:1px solid var(--line);border-radius:99px;background:var(--nav);backdrop-filter:blur(14px)}
+nav.top{position:sticky;top:0;z-index:20;height:64px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;padding:0 max(20px,calc((100vw - 1180px)/2 + 20px));background:none}
+nav.top::before{content:'';position:absolute;inset:0;z-index:-1;background:var(--nav);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);opacity:0;transition:opacity .5s cubic-bezier(.22,1,.36,1)}
+nav.top.scrolled::before{opacity:1}
+[data-theme=light] nav.top.onhero:not(.scrolled){--text:#f2f4f1;--muted:#d3d8d2;--surface2:rgba(255,255,255,.14);--line:rgba(255,255,255,.22)}
 nav.top .logo{width:30px;height:30px;color:var(--text);display:block;transition:transform .6s cubic-bezier(.22,1,.36,1)}
 nav.top a:hover .logo{transform:scale(1.06)}
 .links{display:flex;gap:4px}
@@ -50,7 +53,7 @@ nav.top a:hover .logo{transform:scale(1.06)}
 .pill{transition:color .3s,background .4s cubic-bezier(.22,1,.36,1)}
 .ic{transition:transform .4s cubic-bezier(.22,1,.36,1),background .3s}.ic:hover{transform:scale(1.06)}.ic:active{transform:scale(.94)}
 /* hero */
-.hero{position:relative;isolation:isolate;overflow:hidden;margin-top:-77px;min-height:calc(100vh - 38px);display:grid;place-items:center;text-align:center;padding:120px 20px 80px}
+.hero{position:relative;isolation:isolate;overflow:hidden;margin-top:-64px;min-height:calc(100vh - 38px);display:grid;place-items:center;text-align:center;padding:120px 20px 80px}
 .hero::before{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(rgba(0,0,0,.55),rgba(21,23,21,1)),url(/hero.jpg) center/cover,linear-gradient(135deg,#2c3a2e,#151715);animation:kb 40s ease-in-out infinite alternate}
 .hero h1{font-size:clamp(46px,9vw,92px);color:#f2f4f1}
 .hero p{max-width:520px;margin:22px auto 30px;font-size:18px;font-weight:600;color:#d3d8d2}
@@ -142,7 +145,7 @@ footer{border-top:1px solid var(--line);margin-top:90px;padding:60px 0 30px}
 .warn{margin:0;padding:12px 14px;border-radius:12px;background:rgba(245,184,46,.12);color:var(--gold);border:1px solid rgba(245,184,46,.3);font-size:13.5px;font-weight:600}
 .note{color:var(--muted);text-align:center;margin:22px 0 28px;font-weight:600}
 @media(max-width:900px){.st{grid-template-columns:1fr}.side{position:static}.fc{grid-template-columns:1fr 1fr}.gal{flex-direction:column;height:auto}.vc{min-height:150px;flex:none;transition:min-height .9s cubic-bezier(.22,1,.36,1),filter .5s}.vc.on{min-height:520px}.cta{padding:30px 22px}}
-@media(max-width:600px){nav.top{grid-template-columns:auto 1fr;border-radius:26px}.links{display:none}.pill.login:not(.in) span{display:none}.login .uname{max-width:90px}}
+@media(max-width:600px){nav.top{grid-template-columns:auto 1fr}.links{display:none}.pill.login:not(.in) span{display:none}.login .uname{max-width:90px}}
 @keyframes spin{to{transform:rotate(360deg)}}
 @keyframes kb{from{transform:scale(1)}to{transform:scale(1.06)}}
 @keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
@@ -455,7 +458,7 @@ views.winkel = views.store; views.regels = views.overstappen;
 function route() {
   const r = location.hash.replace(/^#\/?/, '') || 'home', name = views[r] ? r : 'home';
   document.querySelectorAll('.links .pill').forEach(a => a.classList.toggle('on', a.dataset.r === (name==='winkel'?'store':name)));
-  window.scrollTo(0, 0); app.classList.remove('pg'); void app.offsetWidth; app.classList.add('pg'); views[name]();
+  window.scrollTo(0, 0); $('nav.top').classList.toggle('onhero', name === 'home'); app.classList.remove('pg'); void app.offsetWidth; app.classList.add('pg'); views[name]();
 }
 document.addEventListener('click', e => {
   const t = e.target.closest('[data-add],[data-dec],[data-del]'); if (!t) return;
@@ -466,6 +469,8 @@ document.addEventListener('click', e => {
   if (t.dataset.add && location.hash !== '#/winkelmand') toast('Toegevoegd aan winkelmand');
   save(); if (location.hash === '#/winkelmand') views.winkelmand();
 });
+const navEl = $('nav.top'), navScroll = () => navEl.classList.toggle('scrolled', window.scrollY > 24);
+addEventListener('scroll', navScroll, { passive: true }); navScroll();
 addEventListener('hashchange', route); save(); route();
 </script>
 </body>
