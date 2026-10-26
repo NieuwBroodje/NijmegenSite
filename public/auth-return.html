@@ -3,63 +3,93 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Inloggen gelukt — verwerken…</title>
+<title>Inloggen verwerken…</title>
 <meta name="theme-color" content="#151715">
+<link rel="icon" href="/logo.png">
 <style>
 :root{--bg:#151715;--text:#f2f4f1;--blue:#5aaeff;--ok:#4ade80;--err:#ff8a8a}
-body{margin:0;background:var(--bg);color:var(--text);font:600 15px/1.5 system-ui,sans-serif;display:grid;place-items:center;min-height:100vh;text-align:center;padding:20px}
-.box{max-width:480px}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 50% 30%,#1f2a22,var(--bg) 60%);color:var(--text);font:600 15px/1.5 system-ui,sans-serif;display:grid;place-items:center;min-height:100vh;text-align:center;padding:20px}
+.box{max-width:480px;animation:in .6s cubic-bezier(.2,.7,.2,1) both}
 h1{font-size:28px;margin:0 0 12px;font-weight:800;letter-spacing:-.04em}
 p{margin:0 0 6px;color:#a1a7a0}
-.spin{width:40px;height:40px;border:3px solid rgba(255,255,255,.1);border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 24px}
-@keyframes spin{to{transform:rotate(360deg)}}
-.ok{color:var(--ok);font-size:40px;margin-bottom:16px}
-.err{color:var(--err);margin-top:8px;font-size:13px}
+.spin{width:44px;height:44px;border:3px solid rgba(255,255,255,.1);border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 24px}
+.ok,.bad{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font-size:28px;font-weight:800;margin:0 auto 20px;animation:pop .5s cubic-bezier(.2,1.4,.4,1) both}
+.ok{background:rgba(74,222,128,.15);color:var(--ok)}
+.bad{background:rgba(255,138,138,.15);color:var(--err)}
+.err{color:var(--err);margin-top:10px;font-size:13px}
+.btn{display:inline-block;margin-top:16px;background:var(--blue);color:#06213a;border-radius:99px;padding:12px 24px;font-weight:700;text-decoration:none}
 a{color:var(--blue);font-weight:700}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes in{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes pop{from{transform:scale(.3);opacity:0}to{transform:scale(1);opacity:1}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}
 </style>
 </head>
 <body>
 <div class="box">
-  <div id="spin" class="spin"></div>
+  <div id="ic" class="spin"></div>
   <h1 id="title">Even geduld…</h1>
-  <p id="msg">Je aankoop wordt verwerkt. Dit duurt even.</p>
+  <p id="msg">Je CFX-account wordt gekoppeld.</p>
   <p id="err" class="err"></p>
+  <div id="act"></div>
 </div>
 
 <script>
 (async () => {
+  const $ = id => document.getElementById(id);
   const params = new URLSearchParams(location.search);
+
+  // Basket-ident: eerst uit de URL (door onze API meegegeven), anders de opgeslagen pending-basket
+  let pending = null;
+  try { pending = sessionStorage.getItem('pendingBasket'); } catch {}
+  const basketIdent = params.get('basket') || params.get('basketIdent') || params.get('basket_ident') || pending;
   const itemsRaw = params.get('items');
-  // Tebex stuurt soms basketIdent terug als query param
-  const basketIdent = params.get('basketIdent') || params.get('basket_ident') || params.get('basket');
 
-  if (!itemsRaw) {
-    // Geen items, stuur terug naar store
-    document.getElementById('title').textContent = 'Inloggen gelukt!';
-    document.getElementById('msg').textContent = 'Je wordt teruggestuurd naar de store…';
-    document.getElementById('spin').className = 'ok';
-    document.getElementById('spin').textContent = '✓';
-    setTimeout(() => location.href = '/#/store', 1500);
-    return;
-  }
+  const state = (kind, title, msg) => {
+    const ic = $('ic');
+    ic.className = kind === 'ok' ? 'ok' : kind === 'bad' ? 'bad' : 'spin';
+    ic.textContent = kind === 'ok' ? '✓' : kind === 'bad' ? '!' : '';
+    $('title').textContent = title;
+    $('msg').textContent = msg;
+  };
+  const fail = (msg) => {
+    state('bad', 'Er ging iets mis', 'Probeer het nog een keer via de website.');
+    $('err').textContent = msg;
+    $('act').innerHTML = '<a class="btn" href="/#/">Terug naar de website</a>';
+  };
 
-  let items;
+  if (!basketIdent) return fail('Geen sessie gevonden. Klik op de website opnieuw op "Inloggen".');
+
+  // 1. CFX-naam ophalen
+  let username;
   try {
-    items = JSON.parse(decodeURIComponent(itemsRaw));
-  } catch {
-    showError('Ongeldige items in URL.');
+    const r = await fetch('/api/session?basket=' + encodeURIComponent(basketIdent));
+    const d = await r.json();
+    if (!r.ok) throw new Error(d.error || 'Sessie ophalen mislukt');
+    username = d.username;
+  } catch (e) { return fail(e.message); }
+
+  if (!username) return fail('Inloggen is niet voltooid. Probeer het opnieuw.');
+
+  // 2. Opslaan zodat de website de naam kan tonen
+  try {
+    localStorage.setItem('cfx', JSON.stringify({ username, ident: basketIdent }));
+    sessionStorage.setItem('welcome', username);
+    sessionStorage.removeItem('pendingBasket');
+  } catch {}
+
+  // 3a. Alleen inloggen: terug naar de site
+  let items = null;
+  if (itemsRaw) { try { items = JSON.parse(itemsRaw); } catch {} }
+  if (!Array.isArray(items) || !items.length) {
+    state('ok', 'Welkom, ' + username + '!', 'Je bent ingelogd. Je wordt teruggestuurd…');
+    setTimeout(() => { location.replace('/#/'); }, 1200);
     return;
   }
 
-  if (!basketIdent) {
-    // Geen basket ident in URL — misschien staat het in de Tebex return URL anders
-    // Probeer items terug te sturen naar store met een herstart
-    document.getElementById('title').textContent = 'Bijna klaar…';
-    document.getElementById('msg').innerHTML = 'Kon je sessie niet ophalen. <a href="/#/winkelmand">Ga terug naar je winkelmand</a> en probeer opnieuw.';
-    document.getElementById('spin').style.display = 'none';
-    return;
-  }
-
+  // 3b. Afrekenen: packages toevoegen en door naar de kassa
+  state('spin', 'Welkom, ' + username + '!', 'Je winkelmand wordt klaargezet…');
   try {
     const r = await fetch('/api/add-packages', {
       method: 'POST',
@@ -67,25 +97,14 @@ a{color:var(--blue);font-weight:700}
       body: JSON.stringify({ basketIdent, items })
     });
     const d = await r.json();
-    if (!r.ok) throw new Error(d.error || 'Onbekende fout');
-
-    // Stuur naar Tebex checkout
-    document.getElementById('spin').className = 'ok';
-    document.getElementById('spin').textContent = '✓';
-    document.getElementById('title').textContent = 'Gelukt!';
-    document.getElementById('msg').textContent = 'Je wordt doorgestuurd naar de kassa…';
+    if (!r.ok || !d.url) throw new Error(d.error || 'Onbekende fout');
+    state('ok', 'Gelukt!', 'Je wordt doorgestuurd naar de kassa…');
     setTimeout(() => { location.href = d.url; }, 800);
   } catch (e) {
-    showError(e.message);
+    fail(e.message);
+    $('act').innerHTML = '<a class="btn" href="/#/winkelmand">Terug naar winkelmand</a>';
   }
 })();
-
-function showError(msg) {
-  document.getElementById('spin').style.display = 'none';
-  document.getElementById('title').textContent = 'Er ging iets mis';
-  document.getElementById('msg').innerHTML = '<a href="/#/winkelmand">Terug naar winkelmand</a>';
-  document.getElementById('err').textContent = msg;
-}
 </script>
 </body>
 </html>
