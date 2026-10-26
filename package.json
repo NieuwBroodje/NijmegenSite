@@ -1,4 +1,4 @@
-{ "name": "fivem-roleplay-site", "version": "1.0.0", "private": true, "engines": { "node": ">=18" } }
+{ "name": "fivem-roleplay-site", "version": "1.0.0", "private": true, "engines": { "node": ">=18" } },
 {
   "name": "nijmegen-roleplay",
   "private": true,
