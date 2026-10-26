@@ -112,6 +112,12 @@ footer{border-top:1px solid var(--line);margin-top:90px;padding:60px 0 30px}
 .fc p{color:var(--muted);max-width:280px;margin:22px 0}
 .fbot{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-top:44px;padding-top:26px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;font-weight:600}
 .logo{display:block;width:30px;height:30px;object-fit:contain}
+.ov{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;padding:40px 0 10px}
+.ovc{padding:26px;gap:14px}.ovc h3{font-size:22px}
+.ck{list-style:none;margin:0;padding:0;display:grid;gap:10px}.ck li{position:relative;padding-left:30px;font-weight:600}
+.ck li::before{content:'✓';position:absolute;left:0;top:0;width:20px;height:20px;border-radius:50%;background:rgba(74,222,128,.18);color:var(--ok);display:grid;place-items:center;font-size:12px;font-weight:800}
+.warn{margin:0;padding:12px 14px;border-radius:12px;background:rgba(245,184,46,.12);color:var(--gold);border:1px solid rgba(245,184,46,.3);font-size:13.5px;font-weight:600}
+.note{color:var(--muted);text-align:center;margin:22px 0 28px;font-weight:600}
 @media(max-width:900px){.st{grid-template-columns:1fr}.side{position:static}.fc{grid-template-columns:1fr 1fr}.gal{flex-direction:column;height:auto}.vc{min-height:150px;flex:none}.vc.on{min-height:520px}.cta{padding:30px 22px}}
 @media(max-width:600px){nav.top{grid-template-columns:auto 1fr;border-radius:26px}.links{display:none}.pill.login span{display:none}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.vc{transition:none}}
@@ -121,7 +127,7 @@ footer{border-top:1px solid var(--line);margin-top:90px;padding:60px 0 30px}
 <div class="promo"><strong id="pa"></strong><span class="m">Gebruik de code</span><button class="code" id="pc" title="Kopieer"></button><a href="#/store" id="pl">Naar de store →</a></div>
 <nav class="top" aria-label="Hoofdmenu">
   <a href="#/" aria-label="Home"><img class="logo" src="/logo.png" alt="Logo" width="30" height="30"></a>
-  <div class="links"><a class="pill" href="#/" data-r="home">Home</a><a class="pill" href="#/store" data-r="store">Store</a><a class="pill" href="#/regels" data-r="regels">Regels</a></div>
+  <div class="links"><a class="pill" href="#/" data-r="home">Home</a><a class="pill" href="#/store" data-r="store">Store</a><a class="pill" href="#/overstappen" data-r="overstappen">Overstappen</a></div>
   <div class="acts">
     <button class="ic" id="theme" aria-label="Thema wisselen"><svg viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
     <a class="ic" href="#/winkelmand" aria-label="Winkelmand"><svg viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.2"/><circle cx="18" cy="20" r="1.2"/><path d="M2 3h3l2.6 12.4a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.5L21 8H6"/></svg><b id="count" hidden>0</b></a>
@@ -131,8 +137,8 @@ footer{border-top:1px solid var(--line);margin-top:90px;padding:60px 0 30px}
 <main id="app" aria-live="polite"></main>
 <footer><div class="wrap"><div class="fc">
   <div><div class="fb"><img class="logo" src="/logo.png" alt="" width="30" height="30"><span id="fbrand"></span></div><p>Een FiveM roleplay server waar jij het verhaal van de stad schrijft.</p><a class="btn blue" id="fconnect" style="padding:11px 20px">Connect nu</a></div>
-  <div><h5>Navigatie</h5><ul><li><a href="#/">Home</a></li><li><a href="#/store">Store</a></li><li><a href="#/regels">Regels</a></li></ul></div>
-  <div><h5>Regelgeving</h5><ul><li><a href="#/regels">Serverregels</a></li><li><a href="#/regels">APV</a></li><li><a href="#/regels">Wetboek van Strafrecht</a></li><li><a href="#/regels">Wetboek van Strafvordering</a></li></ul></div>
+  <div><h5>Navigatie</h5><ul><li><a href="#/">Home</a></li><li><a href="#/store">Store</a></li><li><a href="#/overstappen">Overstappen</a></li></ul></div>
+  <div><h5>Overstappen</h5><ul><li><a href="#/overstappen">Staff overstap</a></li><li><a href="#/overstappen">Overheid overstap</a></li><li><a href="#/overstappen">Gang overstap</a></li></ul></div>
   <div><h5>Discord</h5><ul id="fdiscords"></ul></div>
 </div><div class="fbot"><span>&copy; <span id="fyear"></span> <span id="fcopy"></span>. Alle rechten voorbehouden.</span><span>Betalingen verlopen veilig via Tebex.</span></div></div></footer>
 
@@ -153,17 +159,27 @@ const CONFIG = {
   coinPackageId: 0,          // Tebex package-ID van 100 coins ("Zelf een aantal kiezen")
   coinStep: 100, coinPricePerStep: 5,
   // Zet afbeeldingen in /public: hero.jpg (achtergrond), logo.svg (logo)
-  vehicles: [
-    { name:'Voorbeeld 1', img:'', desc:'Direct in je garage geleverd.', price:300, supporter:150, items:[{n:'Voertuig A',kg:40,hard:true}] },
-    { name:'Voorbeeld 2', img:'', desc:'Drie voertuigen in een pakket, direct in je garage geleverd.', price:400, supporter:200, items:[{n:'Voertuig B',kg:80,hard:false},{n:'Voertuig C',kg:40,hard:true},{n:'Voertuig D',kg:40,hard:true}] },
-    { name:'Voorbeeld 3', img:'', desc:'Twee voertuigen direct geleverd.', price:350, supporter:175, items:[{n:'Voertuig E',kg:20,hard:true},{n:'Voertuig F',kg:190,hard:false}] }
+  supportUrl: '#',          // link naar je Support-Discord (hier maken mensen een ticket)
+  // Voorbeeldpakketten bij "Geef je coins uit". Zet de afbeeldingen in /public
+  packs: [
+    { name:'VIP Pack Goud', img:'/pack-goud.png', price:50, desc:'Het officiële Gouden VIP Pakket!',
+      items:[['VIP Muziekbox','1x'],['2x AOD Custom Tokens','2x'],['Contant geld','150.000x'],['Heavy Pistol','1x'],['Pistol Ammo','200x']] },
+    { name:'VIP Pack Diamond', img:'/pack-diamond.png', price:85, desc:'Het ultieme Diamond VIP Pakket met alle VIP-functies!',
+      items:[['VIP Muziekbox','1x'],['5x AOD Custom Tokens','5x'],['Contant geld','300.000x'],['Combat Pistol','1x'],['Micro SMG','1x'],['Ammo Pack','350x']] },
+    { name:'Beginner Special Pack', img:'/pack-beginner.png', price:35, desc:'Complete pakket met allerlei speciale producten, om de stad goed te beginnen!',
+      items:[['Switchblade','1x'],['M1911','1x'],['Contant geld','75.000x']] }
   ],
-  rules: [
-    ['Respecteer iedereen','Wees beleefd tegenover spelers en staff, in-game en op Discord.'],
-    ['Blijf in je rol','Geen metagaming, powergaming of FailRP. Roleplay staat voorop.'],
-    ['Eerlijk spelen','Cheats, exploits en bug-misbruik leiden tot een permanente ban.'],
-    ['Straffen','Overtredingen worden beoordeeld door staff. Bezwaar maak je via een ticket op Discord.']
-  ]
+  overstap: {
+    title: 'Overstappen naar de stad',
+    intro: 'Ben jij stafflid, lid van een overheidsfractie of van een gang en wil je overstappen naar ' + 'Nijmegen Roleplay? Kies hieronder je route. Je krijgt meteen een privé-ticket en de juiste coördinator neemt zo snel mogelijk contact met je op.',
+    routes: [
+      { name:'Staff Overstap', text:'Ontvang een staffrol die aansluit bij jouw eerdere ervaring.', points:['Bewijs van je vorige stafffunctie is vereist','Je definitieve rang volgt na een kort gesprek'] },
+      { name:'Overheid Overstap', text:'Neem jouw volledige overheidsfractie mee naar Nijmegen Roleplay.', points:['Stap over mét je hele team','Toegang tot uitgebreide systemen en een actieve overheid','Verder geregeld via onze Overheid Discord'] },
+      { name:'Gang Overstap', text:'Kom je met minimaal 15 actieve leden?', points:['Ontvang een gratis officieel ganghuis','Snelle verwerking bij bewezen activiteit'], warn:'Alle leden moeten van een andere stad komen en mogen nog niet actief zijn geweest in Nijmegen Roleplay.' }
+    ],
+    note: 'Alles wordt vertrouwelijk behandeld. Je ticket blijft privé tussen jou en het team.',
+    cta: 'Maak een ticket aan in onze support discord bij interesse!'
+  }
 };
 /* ===================================== */
 const $ = s => document.querySelector(s), app = $('#app');
@@ -210,9 +226,9 @@ async function checkout(items, btn, errEl) {
 
 const views = {
   async home() {
-    const vs = CONFIG.vehicles;
+    const vs = CONFIG.packs;
     app.innerHTML = `<section class="hero"><div><h1>${esc(CONFIG.name)}</h1><p>${esc(CONFIG.intro)}</p>
-      <div class="row"><a class="btn white" href="#/store">Bekijk de store ${arrow}</a><a class="btn dark" href="#/regels">Regels lezen</a></div>
+      <div class="row"><a class="btn white" href="#/store">Bekijk de store ${arrow}</a><a class="btn dark" href="#/overstappen">Overstappen</a></div>
       <span class="online"><i></i><span id="online">-- spelers online</span></span></div></section>
     <div class="wrap">
     <section class="s"><div class="sh"><div><h2>Populair in de winkel</h2><p>Veilig afrekenen via Tebex. Je aankoop staat direct klaar op je account.</p></div><a class="more" href="#/store">Alle producten ${arrow}</a></div>
@@ -224,10 +240,10 @@ const views = {
     <section class="s"><div class="sh"><div><h2>Geef je coins uit</h2><p>Dit zijn een paar voorbeelden. In de store in-game vind je talloze pakketten, voertuigen en meer.</p></div><span class="cmd">Open de store met <b>/store</b></span></div>
       <div class="gal" id="gal">${vs.map((v,i) => `<div class="vc ${i===Math.min(1,vs.length-1)?'on':''}" role="button" tabindex="0" style="${v.img?`background-image:url('${esc(v.img)}')`:''}">
         <span class="tag">${esc(v.name)}</span><div class="top" style="${v.img?`background-image:url('${esc(v.img)}')`:''}"></div>
-        <div class="pn"><div><h3>${esc(v.name)}</h3><p>${esc(v.desc)}</p>${v.items.map(it => `<div class="it"><span>${esc(it.n)}</span><span><em>${it.kg} kg</em><span class="chip ${it.hard?'':'o'}">${it.hard?'Verhard':'Onverhard'}</span></span></div>`).join('')}</div>
-        <div class="prices">Officiële prijs<b><span class="coin"></span>${v.price}</b>Met Supporter<b class="bl"><span class="coin"></span>${v.supporter}</b></div></div></div>`).join('')}</div>
+        <div class="pn"><div><h3>${esc(v.name)}</h3><p>${esc(v.desc)}</p><strong style="font-size:13px">Bevat</strong>${v.items.map(it => `<div class="it"><span>${esc(it[0])}</span><em style="margin:0">${esc(it[1])}</em></div>`).join('')}</div>
+        <div class="prices">Prijs<b class="bl"><span class="coin"></span>${v.price}</b>${esc(CONFIG.currencyName)}</div></div></div>`).join('')}</div>
       <p style="margin-top:22px"><a class="more" href="#/store">Naar de winkel ${arrow}</a></p></section>
-    <section class="s"><div class="cta"><div><h2>Ben jij klaar om te connecten?</h2><p>Join de Discord, lees de regels en stap de stad in.</p></div>
+    <section class="s"><div class="cta"><div><h2>Ben jij klaar om te connecten?</h2><p>Join de Discord en stap de stad in.</p></div>
       <div class="bt"><a class="btn blue" href="${esc(CONFIG.connect)}">Connect nu</a><a class="btn line" href="${esc(CONFIG.discord)}" target="_blank" rel="noopener">Word lid van de Discord</a></div></div></section></div>`;
     $('#gal').addEventListener('click', e => { const c = e.target.closest('.vc'); if (c) { document.querySelectorAll('.vc').forEach(x => x.classList.toggle('on', x === c)); } });
     $('#gal').addEventListener('keydown', e => { if (e.key === 'Enter') e.target.click(); });
@@ -282,10 +298,15 @@ const views = {
       <p id="payerr" style="margin-top:14px"></p><p>Je rondt de betaling veilig af via Tebex.</p></div>`;
     $('#pay').onclick = e => checkout(cart, e.currentTarget, $('#payerr'));
   },
-  regels() { app.innerHTML = `<div class="wrap prose"><h1>Regels</h1>${CONFIG.rules.map(([t,d]) => `<h2>${esc(t)}</h2><p>${esc(d)}</p>`).join('')}</div>`; },
+  overstappen() { const o = CONFIG.overstap;
+    app.innerHTML = `<div class="wrap"><div class="st-h"><h1>${esc(o.title)}</h1><p>${esc(o.intro)}</p></div>
+      <div class="ov">${o.routes.map((r,n) => `<article class="card ovc"><span class="chip" style="align-self:flex-start">Route ${n+1}</span><h3>${esc(r.name)}</h3><p style="margin:0;color:var(--muted)">${esc(r.text)}</p>
+        <ul class="ck">${r.points.map(x => `<li>${esc(x)}</li>`).join('')}</ul>${r.warn ? `<p class="warn">${esc(r.warn)}</p>` : ''}</article>`).join('')}</div>
+      <p class="note">${esc(o.note)}</p>
+      <div class="cta"><div><h2>Interesse in overstappen?</h2><p>${esc(o.cta)}</p></div><div class="bt"><a class="btn blue" href="${esc(CONFIG.supportUrl)}" target="_blank" rel="noopener">Maak een ticket aan ${arrow}</a></div></div></div>`; },
   bedankt() { cart = []; save(); app.innerHTML = `<div class="wrap prose"><h1>Bedankt voor je aankoop</h1><p>Je aankoop wordt binnen enkele seconden in-game geleverd.</p><p style="margin-top:20px"><a class="btn blue" href="#/">Terug naar home</a></p></div>`; }
 };
-views.winkel = views.store;
+views.winkel = views.store; views.regels = views.overstappen;
 
 function route() {
   const r = location.hash.replace(/^#\/?/, '') || 'home', name = views[r] ? r : 'home';
