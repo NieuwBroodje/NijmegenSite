@@ -1,31 +1,31 @@
-// GET /api/status -> { online, max } rechtstreeks van de server via de cfx.re join-code
+// GET /api/status -> { online, max }, met debug per stap
 module.exports = async (req, res) => {
   const code = (process.env.FIVEM_CODE || '').trim();
-  res.setHeader('Cache-Control', 's-maxage=30, stale-while-revalidate=120');
+  res.setHeader('Cache-Control', 'no-store');
   if (!code) return res.status(200).json({ online: null, debug: 'FIVEM_CODE ontbreekt' });
 
-  const opts = { headers: { 'User-Agent': 'Mozilla/5.0' }, signal: AbortSignal.timeout(5000) };
+  const opts = () => ({ headers: { 'User-Agent': 'Mozilla/5.0' }, signal: AbortSignal.timeout(4000) });
+  let step = 'join-link';
+  let base = '';
   try {
-    // Stap 1: join-link geeft het serveradres terug in een header
-    const j = await fetch(`https://cfx.re/join/${encodeURIComponent(code)}`, { ...opts, redirect: 'manual' });
-    const base = (j.headers.get('x-citizenfx-url') || '').replace(/\/$/, '');
-    if (!base) return res.status(200).json({ online: null, debug: `Geen serveradres via join-link (status ${j.status})` });
+    const j = await fetch(`https://cfx.re/join/${encodeURIComponent(code)}`, { ...opts(), redirect: 'manual' });
+    base = (j.headers.get('x-citizenfx-url') || '').replace(/\/$/, '');
+    if (!base) return res.status(200).json({ online: null, debug: `join-link gaf geen adres (status ${j.status})` });
 
-    // Stap 2: spelers en max slots ophalen
-    const [pr, ir] = await Promise.all([
-      fetch(`${base}/players.json`, opts),
-      fetch(`${base}/info.json`, opts)
-    ]);
-    if (!pr.ok) return res.status(200).json({ online: null, debug: `players.json status ${pr.status}` });
-
+    step = 'players.json';
+    const pr = await fetch(`${base}/players.json`, opts());
+    if (!pr.ok) return res.status(200).json({ online: null, debug: `players.json status ${pr.status}`, base });
     const players = await pr.json();
+
+    step = 'info.json';
     let max = null;
-    if (ir.ok) {
-      const info = await ir.json();
-      max = parseInt(info?.vars?.sv_maxClients, 10) || null;
-    }
+    try {
+      const ir = await fetch(`${base}/info.json`, opts());
+      if (ir.ok) max = parseInt((await ir.json())?.vars?.sv_maxClients, 10) || null;
+    } catch {}
+
     res.status(200).json({ online: Array.isArray(players) ? players.length : null, max });
   } catch (e) {
-    res.status(200).json({ online: null, debug: String(e) });
+    res.status(200).json({ online: null, debug: `fout bij stap "${step}": ${String(e)}`, base });
   }
 };
