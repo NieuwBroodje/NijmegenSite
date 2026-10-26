@@ -38,6 +38,7 @@ a{color:var(--blue);font-weight:700}
 <script>
 (async () => {
   const $ = id => document.getElementById(id);
+  const readJson = async r => { const t = await r.text(); try { return JSON.parse(t); } catch { return { error: 'Serverfout (' + r.status + ')' }; } };
   const params = new URLSearchParams(location.search);
 
   // Basket-ident: eerst uit de URL (door onze API meegegeven), anders de opgeslagen pending-basket
@@ -65,7 +66,7 @@ a{color:var(--blue);font-weight:700}
   let username;
   try {
     const r = await fetch('/api/session?basket=' + encodeURIComponent(basketIdent));
-    const d = await r.json();
+    const d = await readJson(r);
     if (!r.ok) throw new Error(d.error || 'Sessie ophalen mislukt');
     username = d.username;
   } catch (e) { return fail(e.message); }
@@ -96,7 +97,7 @@ a{color:var(--blue);font-weight:700}
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ basketIdent, items })
     });
-    const d = await r.json();
+    const d = await readJson(r);
     if (!r.ok || !d.url) throw new Error(d.error || 'Onbekende fout');
     state('ok', 'Gelukt!', 'Je wordt doorgestuurd naar de kassa…');
     setTimeout(() => { location.href = d.url; }, 800);
