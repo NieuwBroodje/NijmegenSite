@@ -88,7 +88,10 @@ module.exports = async (req, res) => {
         });
         if (!aRes.ok) throw new Error(`Pakket toevoegen mislukt (${aRes.status}): ${await aRes.text()}`);
       }
-      return res.status(200).json({ url: basket.links.checkout });
+      const fresh = await getBasket(token, basket.ident);
+      const url = fresh?.links?.checkout;
+      if (!url) throw new Error('Tebex gaf geen afreken-link terug');
+      return res.status(200).json({ url });
     }
 
     res.status(200).json({ authUrl, basketIdent: basket.ident });
