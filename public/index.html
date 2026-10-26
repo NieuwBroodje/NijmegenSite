@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Jouw Server | Nederlandse FiveM Roleplay</title>
+<title>Nijmegen Roleplay | Nederlandse FiveM Roleplay</title>
 <meta name="description" content="Nederlandse FiveM roleplay server met veilige betalingen via Tebex.">
 <meta name="theme-color" content="#151715">
 <link rel="icon" href="/logo.png">
@@ -108,10 +108,10 @@ table{width:100%;border-collapse:collapse}td{padding:16px 8px;border-bottom:1px 
 footer{border-top:1px solid var(--line);margin-top:90px;padding:60px 0 30px}
 .fc{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px}
 .fc h5{margin:4px 0 20px;font-size:14px}.fc ul{list-style:none;margin:0;padding:0;display:grid;gap:14px}.fc li a{color:var(--muted);text-decoration:none;font-weight:600}.fc li a:hover{color:var(--text)}
-.fb{display:flex;gap:10px;align-items:center;font-weight:800;font-size:16px}.fb img{width:30px;filter:invert(var(--inv,0))}
+.fb{display:flex;gap:10px;align-items:center;font-weight:800;font-size:16px}
 .fc p{color:var(--muted);max-width:280px;margin:22px 0}
 .fbot{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-top:44px;padding-top:26px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;font-weight:600}
-.logo{mask:url(/logo.png) center/contain no-repeat;-webkit-mask:url(/logo.png) center/contain no-repeat;background:currentColor}
+.logo{display:block;width:30px;height:30px;object-fit:contain}
 @media(max-width:900px){.st{grid-template-columns:1fr}.side{position:static}.fc{grid-template-columns:1fr 1fr}.gal{flex-direction:column;height:auto}.vc{min-height:150px;flex:none}.vc.on{min-height:520px}.cta{padding:30px 22px}}
 @media(max-width:600px){nav.top{grid-template-columns:auto 1fr;border-radius:26px}.links{display:none}.pill.login span{display:none}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.vc{transition:none}}
@@ -120,7 +120,7 @@ footer{border-top:1px solid var(--line);margin-top:90px;padding:60px 0 30px}
 <body>
 <div class="promo"><strong id="pa"></strong><span class="m">Gebruik de code</span><button class="code" id="pc" title="Kopieer"></button><a href="#/store" id="pl">Naar de store →</a></div>
 <nav class="top" aria-label="Hoofdmenu">
-  <a href="#/" aria-label="Home"><span class="logo" style="display:block;width:30px;height:30px"></span></a>
+  <a href="#/" aria-label="Home"><img class="logo" src="/logo.png" alt="Logo" width="30" height="30"></a>
   <div class="links"><a class="pill" href="#/" data-r="home">Home</a><a class="pill" href="#/store" data-r="store">Store</a><a class="pill" href="#/regels" data-r="regels">Regels</a></div>
   <div class="acts">
     <button class="ic" id="theme" aria-label="Thema wisselen"><svg viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
@@ -130,7 +130,7 @@ footer{border-top:1px solid var(--line);margin-top:90px;padding:60px 0 30px}
 </nav>
 <main id="app" aria-live="polite"></main>
 <footer><div class="wrap"><div class="fc">
-  <div><div class="fb"><span class="logo" style="width:30px;height:30px"></span><span id="fbrand"></span></div><p>Een FiveM roleplay server waar jij het verhaal van de stad schrijft.</p><a class="btn blue" id="fconnect" style="padding:11px 20px">Connect nu</a></div>
+  <div><div class="fb"><img class="logo" src="/logo.png" alt="" width="30" height="30"><span id="fbrand"></span></div><p>Een FiveM roleplay server waar jij het verhaal van de stad schrijft.</p><a class="btn blue" id="fconnect" style="padding:11px 20px">Connect nu</a></div>
   <div><h5>Navigatie</h5><ul><li><a href="#/">Home</a></li><li><a href="#/store">Store</a></li><li><a href="#/regels">Regels</a></li></ul></div>
   <div><h5>Regelgeving</h5><ul><li><a href="#/regels">Serverregels</a></li><li><a href="#/regels">APV</a></li><li><a href="#/regels">Wetboek van Strafrecht</a></li><li><a href="#/regels">Wetboek van Strafvordering</a></li></ul></div>
   <div><h5>Discord</h5><ul id="fdiscords"></ul></div>
@@ -140,6 +140,7 @@ footer{border-top:1px solid var(--line);margin-top:90px;padding:60px 0 30px}
 /* ====== Pas hier je server aan ====== */
 const CONFIG = {
   name: 'Nijmegen Roleplay',
+  logo: '/logo.png',        // zet je logo in de map public/ met deze naam
   tagline: 'Nederlandse FiveM roleplay server',
   intro: 'Geïnspireerd op echte roleplay, maar met een toegankelijke economie waarin wapens en geld hand in hand gaan met pure roleplay.',
   promoText: '25% korting op alle coins', promoCode: 'WELKOM25',
@@ -147,11 +148,11 @@ const CONFIG = {
   storeIntro: 'Koop coins, een Supporter-pas of een staffrang. Na je betaling komt het automatisch in-game.',
   discord: 'https://discord.gg/nijmegen',
   discords: [['Hoofd-Discord','https://discord.gg/nijmegen'],['Support','#'],['Onderwereld','#'],['Overheid','#']],
-  connect: 'cfx.re/join/3yyz898',
+  connect: 'https://cfx.re/join/3yyz898',
   loginUrl: '#',
   coinPackageId: 0,          // Tebex package-ID van 100 coins ("Zelf een aantal kiezen")
   coinStep: 100, coinPricePerStep: 5,
-  // Zet afbeeldingen in /public: hero.jpg (achtergrond), logo.png (logo)
+  // Zet afbeeldingen in /public: hero.jpg (achtergrond), logo.svg (logo)
   vehicles: [
     { name:'Voorbeeld 1', img:'', desc:'Direct in je garage geleverd.', price:300, supporter:150, items:[{n:'Voertuig A',kg:40,hard:true}] },
     { name:'Voorbeeld 2', img:'', desc:'Drie voertuigen in een pakket, direct in je garage geleverd.', price:400, supporter:200, items:[{n:'Voertuig B',kg:80,hard:false},{n:'Voertuig C',kg:40,hard:true},{n:'Voertuig D',kg:40,hard:true}] },
@@ -178,6 +179,8 @@ const save = () => { try { localStorage.setItem('cart', JSON.stringify(cart)); }
 try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch {}
 $('#theme').onclick = () => { const t = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light'; document.documentElement.dataset.theme = t; try { localStorage.setItem('theme', t); } catch {} };
 document.title = `${CONFIG.name} | ${CONFIG.tagline}`;
+document.querySelectorAll('img.logo').forEach(i => i.src = CONFIG.logo);
+document.querySelector('link[rel=icon]').href = CONFIG.logo;
 $('#fbrand').textContent = CONFIG.name; $('#fcopy').textContent = CONFIG.name; $('#fyear').textContent = new Date().getFullYear();
 $('#pa').textContent = CONFIG.promoText; $('#pc').textContent = CONFIG.promoCode;
 $('#pc').onclick = () => { navigator.clipboard?.writeText(CONFIG.promoCode); $('#pc').textContent = 'Gekopieerd'; setTimeout(()=>$('#pc').textContent = CONFIG.promoCode, 1200); };
