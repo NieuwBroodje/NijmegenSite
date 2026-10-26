@@ -1,6 +1,6 @@
 // GET /api/status -> { online, max } via de publieke FiveM server-API
 module.exports = async (req, res) => {
-  const code = process.env.FIVEM_CFX_CODE;
+  const code = process.env.FIVEM_CODE;
   res.setHeader('Cache-Control', 's-maxage=30, stale-while-revalidate=120');
   if (!code) return res.status(200).json({ online: null });
   try {
