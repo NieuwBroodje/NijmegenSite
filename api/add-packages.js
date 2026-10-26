@@ -107,7 +107,19 @@ module.exports = async (req, res) => {
       }
     }
 
-    res.status(200).json({ url: basket.links.checkout, username: basket.username });
+    // FIX: Tebex vult links.checkout pas zodra er pakketten in de basket zitten,
+    // dus de basket moet NA het toevoegen opnieuw worden opgehaald.
+    let url = null;
+    for (let t = 0; t < 3 && !url; t++) {
+      if (t) await new Promise(r => setTimeout(r, 400));
+      try {
+        const fresh = await getBasket(token, basketIdent);
+        url = fresh?.links?.checkout || fresh?.links?.payment || null;
+      } catch {}
+    }
+    if (!url) throw new Error('Tebex gaf geen afreken-link terug. Probeer het opnieuw.');
+
+    res.status(200).json({ url, username: basket.username });
   } catch (e) {
     console.error('Add packages fout:', e);
     res.status(502).json({ error: e.message });
