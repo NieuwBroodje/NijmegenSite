@@ -120,6 +120,7 @@ footer{border-top:1px solid var(--line);margin-top:90px;padding:60px 0 30px}
 .note{color:var(--muted);text-align:center;margin:22px 0 28px;font-weight:600}
 @media(max-width:900px){.st{grid-template-columns:1fr}.side{position:static}.fc{grid-template-columns:1fr 1fr}.gal{flex-direction:column;height:auto}.vc{min-height:150px;flex:none}.vc.on{min-height:520px}.cta{padding:30px 22px}}
 @media(max-width:600px){nav.top{grid-template-columns:auto 1fr;border-radius:26px}.links{display:none}.pill.login span{display:none}}
+@keyframes spin{to{transform:rotate(360deg)}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.vc{transition:none}}
 </style>
 </head>
@@ -217,11 +218,32 @@ function pkgCard(p, badge) {
   <button class="ic" data-add="${p.id}" aria-label="${esc(p.name)} in winkelmand">${cartIc}</button></div></article>`;
 }
 async function checkout(items, btn, errEl) {
-  const old = btn.innerHTML; btn.disabled = true; btn.textContent = 'Bezig…';
+  const old = btn.innerHTML; btn.disabled = true; btn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" style="animation:spin .8s linear infinite" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> Bezig…';
+  errEl.textContent = '';
   try {
-    const r = await fetch('/api/checkout', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ items }) });
-    const d = await r.json(); if (!r.ok) throw new Error(d.error); location.href = d.url;
-  } catch (e) { errEl.className = 'err'; errEl.textContent = 'Afrekenen mislukt: ' + e.message; btn.disabled = false; btn.innerHTML = old; }
+    const r = await fetch('/api/checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ items })
+    });
+    const d = await r.json();
+    if (!r.ok) throw new Error(d.error || 'Onbekende fout');
+    if (d.authUrl) {
+      // CFX login vereist: stuur gebruiker naar Tebex auth pagina
+      btn.innerHTML = '🔐 Doorsturen naar CFX login…';
+      setTimeout(() => { location.href = d.authUrl; }, 400);
+    } else if (d.url) {
+      btn.innerHTML = '✓ Doorsturen naar kassa…';
+      setTimeout(() => { location.href = d.url; }, 400);
+    } else {
+      throw new Error('Geen checkout URL ontvangen');
+    }
+  } catch (e) {
+    errEl.className = 'err';
+    errEl.textContent = 'Afrekenen mislukt: ' + e.message;
+    btn.disabled = false;
+    btn.innerHTML = old;
+  }
 }
 
 const views = {
